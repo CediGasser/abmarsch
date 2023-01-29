@@ -1,0 +1,14 @@
+@font-face {
+    font-family: Harmony;
+    src: url("$lib/assets/harmony/harmony.otf") format("opentype");
+}
+
+:root {
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+h1,
+h2,
+p {
+	font-weight: 400;
+}
