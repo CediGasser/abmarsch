@@ -1,5 +1,7 @@
 :root {
 	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	--color-primary: #000;
+	--color-primary-contrast: #fff;
 }
 
 h1,
