@@ -1,0 +1,23 @@
+name: automatic-deployment
+
+on:
+  push:
+    branches: 
+      - master
+  pull_request:
+    branches: 
+      - master
+
+jobs:
+  deploy:
+    name: Deployment-Production
+    runs-on: ubuntu-latest
+    steps:
+    - name: Execute-Remote-Deplyoment-Script
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        passphrase: ${{ secrets.PASSPHRASE }}
+        script: bash /home/cedric/docker/figged-sie-de-bode.ch/rebuild.sh
