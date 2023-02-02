@@ -70,6 +70,12 @@
   .grid-item {
     padding: 0.5rem;
     border-radius: 0.5rem;
+    height: 3rem;
+    width: 2.5rem;
+  }
+
+  .grid-item:last-child {
+    border: 1px solid var(--color-primary);
   }
 
   .passed {
@@ -79,7 +85,7 @@
   }
 
   .first-of-month {
-    font-weight: 800;
+    font-weight: 900;
   }
 
   .first-of-month::after {
@@ -87,9 +93,6 @@
     font-size: 0.5rem;
     font-weight: 400;
     color: var(--color-text);
-    position: relative;
-    display: flex;
-    top: -0.5rem;
-    left: 0.5rem;
+    display: block;
   }
 </style>
