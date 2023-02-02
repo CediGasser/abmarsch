@@ -2,6 +2,9 @@
   import Days from '$lib/components/Days.svelte'
   import Progress from '$lib/components/Progress.svelte'
   import Calendar from '$lib/components/Calendar.svelte'
+
+  import SwipeIndicator from '$lib/components/SwipeIndicator.svelte';
+  let daysDiv: HTMLElement
 </script>
 
 <main>
@@ -11,13 +14,14 @@
     <div class="horizontal-scroll-item">
       <Calendar />
     </div>
-    <div class="horizontal-scroll-item">
+    <div bind:this={daysDiv} class="horizontal-scroll-item">
       <Days />
     </div>
     <div class="horizontal-scroll-item">
       <Progress />
     </div>
   </div>
+  <SwipeIndicator observe={daysDiv} />
 </main>
 
 <style>
