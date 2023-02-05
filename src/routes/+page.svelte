@@ -5,6 +5,10 @@
 
   import SwipeIndicator from '$lib/components/SwipeIndicator.svelte';
   let daysDiv: HTMLElement
+
+  const swipeRight = () => {
+    daysDiv.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }
 </script>
 
 <main>
@@ -21,7 +25,7 @@
       <Progress />
     </div>
   </div>
-  <SwipeIndicator observe={daysDiv} />
+  <SwipeIndicator observe={daysDiv} on:press={swipeRight} />
 </main>
 
 <style>
