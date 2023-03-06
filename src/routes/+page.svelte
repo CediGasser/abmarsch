@@ -24,6 +24,10 @@
     <div class="horizontal-scroll-item">
       <Progress />
     </div>
+    <div class="horizontal-scroll-item">
+      <h2>Dankä füre Bsuech</h2>
+      <pre>Code wär hiä: <a href="https://github.com/cedigasser/bode-figge">GitHub</a></pre>
+    </div>
   </div>
   <SwipeIndicator observe={daysDiv} on:press={swipeRight} />
 </main>
