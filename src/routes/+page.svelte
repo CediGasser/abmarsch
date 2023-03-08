@@ -33,6 +33,15 @@
 </main>
 
 <style>
+  @media (min-width: 600px) {
+    .horizontal-scroll-container {
+      flex-direction: column;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scroll-snap-type: y mandatory;
+    }
+  }
+
   h1 {
     font-weight: 600;
     font-size: 2rem;

@@ -1,4 +1,4 @@
-export const end = new Date('2023-05-19')
+export const end = new Date('2023-11-03')
 export const start = new Date('2023-01-16')
 
 export const daysLeft = () => {
