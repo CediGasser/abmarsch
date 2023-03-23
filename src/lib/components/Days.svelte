@@ -3,7 +3,7 @@
 </script>
 
 <div>
-  <h2>{daysPassed()} / {daysTotal()}</h2>
+  <h2>{$daysPassed} / {$daysTotal}</h2>
   <h3>Täg im Militär</h3>
 </div>
 

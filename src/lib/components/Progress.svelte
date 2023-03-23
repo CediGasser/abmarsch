@@ -4,7 +4,7 @@
 
 <div>
   <label for="army">So viel isch gschafft bis jetzt:</label>
-  <progress id="army" value={daysPassed()} max={daysTotal()}> {Math.ceil(daysPassed() / daysTotal())}% </progress>
+  <progress id="army" value={$daysPassed} max={$daysTotal}> {Math.ceil($daysPassed / $daysTotal)}% </progress>
 </div>
 
 <style>

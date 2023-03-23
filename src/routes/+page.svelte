@@ -2,8 +2,11 @@
   import Days from '$lib/components/Days.svelte'
   import Progress from '$lib/components/Progress.svelte'
   import Calendar from '$lib/components/Calendar.svelte'
-
+  import DateInput from '$lib/components/DateInput.svelte'
   import SwipeIndicator from '$lib/components/SwipeIndicator.svelte';
+
+  import { startDate, endDate } from '$lib/classes/Dates';
+
   let daysDiv: HTMLElement
 
   const swipeRight = () => {
@@ -13,7 +16,7 @@
 
 <main>
   <h1>Figged sie de bode!!!</h1>
-
+  <span>Vom <DateInput bind:value={$startDate} /> bis zum <DateInput bind:value={$endDate}/></span>
   <div class="horizontal-scroll-container">
     <div class="horizontal-scroll-item">
       <Calendar />
@@ -47,6 +50,13 @@
     font-size: 2rem;
     text-align: center;
     padding-block: 1rem;
+    flex: 0 1 auto;
+  }
+
+  span {
+    font-size: 0.75rem;
+    text-align: center;
+    padding-block: .5rem;
     flex: 0 1 auto;
   }
 

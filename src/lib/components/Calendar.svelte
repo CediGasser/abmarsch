@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { daysTotal, daysPassed, start } from "$lib/classes/Dates";
+  import { daysTotal, daysPassed, startDate } from "$lib/classes/Dates";
 
   type day = {
     passed: boolean;
@@ -7,11 +7,11 @@
   }
 
   let daysArray: day[] = [];
-  for (let i = 0; i <= daysTotal(); i++) {
-    daysArray = [...daysArray, {
-      passed: i < daysPassed(),
-      date: new Date(start.getTime() + i * 24 * 60 * 60 * 1000)
-    }];
+  $: if ($daysTotal) {
+    daysArray = Array($daysTotal + 1).fill('').map((_, i) => ({
+      passed: i < $daysPassed,
+      date: new Date($startDate.getTime() + i * 24 * 60 * 60 * 1000)
+    }));
   }
 
   let months = [

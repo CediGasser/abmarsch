@@ -19,6 +19,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@sveltejs/adapter-node": "^1.1.4"
+		"@efstajas/svelte-stored-writable": "^0.1.3",
+		"@sveltejs/adapter-node": "^1.1.4",
+		"zod": "^3.21.4"
 	}
 }
