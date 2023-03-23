@@ -12,15 +12,12 @@
     let localSwiped = window.localStorage.getItem('swiped') ?? 'false'
     swiped = localSwiped === 'true'
 
-    console.log('swiped', swiped)
-
     if (swiped) return
 
     intersectionObserver = new IntersectionObserver(
       (entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            console.log('swiped')
             window.localStorage.setItem('swiped', 'true')
             swiped = window.localStorage.getItem('swiped') === 'true'
             observer.disconnect()
