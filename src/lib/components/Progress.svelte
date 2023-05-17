@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { daysTotal, daysPassed } from "$lib/classes/Dates";
+  import { daysTotal, daysPassed } from "$lib/stores/Dates";
 </script>
 
 <div>

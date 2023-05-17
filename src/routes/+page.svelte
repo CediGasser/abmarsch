@@ -5,7 +5,7 @@
   import DateInput from '$lib/components/DateInput.svelte'
   import SwipeIndicator from '$lib/components/SwipeIndicator.svelte';
 
-  import { startDate, endDate } from '$lib/classes/Dates';
+  import { startDate, endDate } from '$lib/stores/Dates';
 
   let daysDiv: HTMLElement
 

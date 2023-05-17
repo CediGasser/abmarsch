@@ -62,10 +62,11 @@
     bottom: 3.5rem;
     right: 2rem;
     height: 3rem;
-    background: transparent;
+    background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(4px);
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
     border-radius: 1.5rem;
+    border: solid 1px rgba(255, 255, 255, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { daysTotal, daysPassed, startDate } from "$lib/classes/Dates";
+  import { daysTotal, daysPassed, startDate } from "$lib/stores/Dates";
 
   type day = {
     isPassed: boolean;
