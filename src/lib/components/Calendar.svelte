@@ -10,7 +10,7 @@
 
   let daysArray: day[] = [];
   $: if ($daysTotal) {
-    daysArray = Array($daysTotal + 1).fill('').map((_, i) => ({
+    daysArray = Array($daysTotal).fill('').map((_, i) => ({
       isPassed: i + 1 < $daysPassed,
       isToday: i + 1 === $daysPassed,
       date: new Date($startDate.getTime() + i * 24 * 60 * 60 * 1000),

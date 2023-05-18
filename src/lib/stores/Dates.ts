@@ -21,5 +21,5 @@ export const daysPassed = derived([startDate], ([$startDate]) => {
 
 export const daysTotal = derived([startDate, endDate], ([$startDate, $endDate]) => {
   const diff = $endDate.getTime() - $startDate.getTime()
-  return Math.ceil(diff / (1000 * 3600 * 24))
+  return Math.ceil(diff / (1000 * 3600 * 24)) + 1 // +1 because we count the start date
 })
