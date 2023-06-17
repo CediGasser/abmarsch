@@ -4,7 +4,7 @@ import { z } from 'zod'
 import { browser } from '$app/environment'
 
 const DEFAULT_END_DATE = new Date('2023-11-03')
-const DEFAULT_START_DATE = new Date('2023-01-16')
+const DEFAULT_START_DATE = new Date('2023-07-03')
 
 export const endDate = storedWritable('endDate', z.coerce.date(), DEFAULT_END_DATE, !browser)
 export const startDate = storedWritable('startDate', z.coerce.date(), DEFAULT_START_DATE, !browser)
