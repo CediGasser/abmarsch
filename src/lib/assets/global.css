@@ -1,11 +1,144 @@
 :root {
-	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-	--color-primary: #000;
-	--color-primary-contrast: #fff;
+	/* Added styles from https://hihayk.github.io/shaper/#Futura/1.35/1/3/1/1.5/0.6/107/24/34/25/1/3/true */
+	/* Typography */
+	--baseTextSize: 1rem;
+	--textSizeIncrement: 1.35;
+
+	--text-xs: calc(var(--baseTextSize) / var(--textSizeIncrement));
+	--text-s: var(--baseTextSize);
+	--text-m: calc(var(--text-s) * var(--textSizeIncrement));
+	--text-l: calc(var(--text-m) * var(--textSizeIncrement));
+	--text-xl: calc(var(--text-l) * var(--textSizeIncrement));
+
+	--lineHeightFixedAmount: 0.35rem;
+	--lineHeightRelativeAmount: 1.1em;
+	--globalLineHeight: calc(var(--lineHeightFixedAmount) + var(--lineHeightRelativeAmount));
+
+	--fontFamily: Futura;
+
+	/* Spacing */
+	--unit: 0.6rem;
+	--spaceIncrement: 1.5;
+
+	--space-s: var(--unit);
+	--space-m: calc(var(--space-s) * var(--spaceIncrement));
+	--space-l: calc(var(--space-m) * var(--spaceIncrement));
+	--space-xl: calc(var(--space-l) * var(--spaceIncrement));
+	--space-2xl: calc(var(--space-xl) * var(--spaceIncrement));
+	--space-3xl: calc(var(--space-2xl) * var(--spaceIncrement));
+	--space-4xl: calc(var(--space-3xl) * var(--spaceIncrement));
+
+	/* Text Frame */
+	--textFrameRatio: 3;
+	--textFrameY: 1em;
+	--textFrameX: calc(var(--textFrameY) * var(--textFrameRatio));
+
+	/* Color */
+	--accentH: 107;
+	--accentS: 24%;
+	--accentL: 34%;
+	--c-accent: hsl(var(--accentH), var(--accentS), var(--accentL));
+	--c-accentContrasted: hsl(var(--accentH), var(--accentS), 95%);
+
+	--greyH: var(--accentH);
+	--greyS: 25%;
+	--initialGreyLightness: 93%;
+	--greyscaleLightnessIncrement: 11.3%;
+
+	--grey1L:  var(--initialGreyLightness);
+	--grey2L:  calc(var(--initialGreyLightness) - var(--greyscaleLightnessIncrement) * 1);
+	--grey3L:  calc(var(--initialGreyLightness) - var(--greyscaleLightnessIncrement) * 2);
+	--grey4L:  calc(var(--initialGreyLightness) - var(--greyscaleLightnessIncrement) * 3);
+	--grey5L:  calc(var(--initialGreyLightness) - var(--greyscaleLightnessIncrement) * 4);
+	--grey6L:  calc(var(--initialGreyLightness) - var(--greyscaleLightnessIncrement) * 5);
+	--grey7L:  calc(var(--initialGreyLightness) - var(--greyscaleLightnessIncrement) * 6);
+	--grey8L:  calc(var(--initialGreyLightness) - var(--greyscaleLightnessIncrement) * 7);
+
+	--c-grey1: hsl(var(--greyH), var(--greyS), var(--grey1L));
+	--c-grey2: hsl(var(--greyH), var(--greyS), var(--grey2L));
+	--c-grey3: hsl(var(--greyH), var(--greyS), var(--grey3L));
+	--c-grey4: hsl(var(--greyH), var(--greyS), var(--grey4L));
+	--c-grey5: hsl(var(--greyH), var(--greyS), var(--grey5L));
+	--c-grey6: hsl(var(--greyH), var(--greyS), var(--grey6L));
+	--c-grey7: hsl(var(--greyH), var(--greyS), var(--grey7L));
+	--c-grey8: hsl(var(--greyH), var(--greyS), var(--grey8L));
+
+	--c-border: hsla(var(--greyH), var(--greyS), var(--grey8L), 0.1);
+	--c-overlay: hsla(var(--greyH), var(--greyS), var(--grey8L), 0.07);
+	--c-background: white;
+	--c-body: var(--c-grey8);
+	--c-bodyDimmed: hsla(var(--greyH), var(--greyS), var(--grey8L), 0.5);
+	--c-fieldBorder: var(--c-grey2);
+	--c-buttonBg: var(--c-grey2);
+
+	/* Layer */
+	--radius: 2rem;
+	--fieldBorderWidth: 3px;
+
+	font-family: var(--fontFamily);
+	font-size: var(--text-s);
+	line-height: var(--globalLineHeight);
+	color: var(--c-body);
+	background-color: var(--c-background);
+}
+
+/* Dark mode Styles */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--c-border: hsla(var(--greyH), var(--greyS), var(--grey1L), 0.1);
+		--c-overlay: hsla(var(--greyH), var(--greyS), var(--grey1L), 0.07);
+		--c-background: var(--c-grey8);
+		--c-body: var(--c-grey1);
+		--c-bodyDimmed: hsla(var(--greyH), var(--greyS), var(--grey1L), 0.5);
+		--c-fieldBorder: var(--c-grey6);
+		--c-buttonBg: var(--c-grey6);
+		--c-accent: hsl(var(--accentH), var(--accentS), 90%);
+	}
+}
+
+main {
+	padding: var(--space-l);
+}
+
+.card {
+	background-color: var(--c-overlay);
+	border-radius: var(--radius);
+	padding: var(--space-l);
+	width: 100%;
+	height: 100%;
+}
+
+.card h4 {
+	line-height: var(--globalLineHeight);
+}
+
+.card span {
+	display: block;
+	margin-bottom: var(--space-l);
+	font-size: var(--text-xl);
+	color: var(--c-accent)
+}
+
+.card p {
+	font-size: var(--text-s);
+	line-height: var(--globalLineHeight);
 }
 
 h1,
 h2,
-p {
-	font-weight: 400;
+h3 {
+	line-height: var(--globalLineHeight);
+	margin-bottom: var(--space-l);
+}
+
+h1 {
+	font-size: var(--text-xl);
+}
+
+h2 {
+	font-size: var(--text-l);
+}
+
+h3 {
+	font-size: var(--text-m);
 }
