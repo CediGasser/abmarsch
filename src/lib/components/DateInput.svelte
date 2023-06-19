@@ -19,11 +19,12 @@
 <style>
     input {
         display: inline;
-        font-size: 1rem;
-        padding: 1px;
-        border: none;
-        background-color: lightgrey;
-        border-radius: 8px;
-        padding-inline-start: 4px;
+        color: var(--c-body);
+        padding-inline: var(--textFrameX);
+        padding-block: var(--textFrameY);
+        font-size: 1.5rem;
+        background-color: var(--c-overlay);
+        border: var(--fieldBorderWidth);
+        border-radius: var(--radius);
     }
 </style>

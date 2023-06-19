@@ -29,8 +29,8 @@
 	--space-4xl: calc(var(--space-3xl) * var(--spaceIncrement));
 
 	/* Text Frame */
-	--textFrameRatio: 3;
-	--textFrameY: 1em;
+	--textFrameRatio: 2;
+	--textFrameY: .5em;
 	--textFrameX: calc(var(--textFrameY) * var(--textFrameRatio));
 
 	/* Color */

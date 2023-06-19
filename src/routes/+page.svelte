@@ -27,7 +27,7 @@
   ]
 
   let weekDayMessages = [
-    'Es isch scho wider Mäntig...',
+    'Es isch scho wieder Mäntig...',
     'Immerhin scho ei Tag verbii!',
     'Mittwuch gids Uusgang!',
     'Nur no zwei Täg!',
@@ -40,26 +40,29 @@
 <main>
   <header>
     <h1>Figged sie de Bode!</h1>
-    <span hidden>von <DateInput bind:value={$startDate} /> bis <DateInput bind:value={$endDate} /></span>
   </header>
   <div class="kpi-grid">
+    <div class="card date-selection">
+        <h4>Start</h4> <DateInput bind:value={$startDate} />
+        <h4>End</h4> <DateInput bind:value={$endDate} />
+    </div>
     <div class="week">
       <StatusCard 
         title="Wuchä" 
-        value={Math.ceil($daysPassed / 7)} />
+        value={Math.max(0, Math.min(Math.ceil($daysPassed / 7), Math.ceil($daysTotal / 7)))} />
     </div>
     <div class="progress">
       <StatusCard 
         title="Fortschritt" 
-        value={percentage} 
+        value={Math.max(0, percentage)} 
         unit="%"
-        text={progressMessages[Math.round(percentage / 25)]}
+        text={percentage > 100 ? progressMessages[Math.round(percentage / 25 - 1)] : 'Fertiig!!'}
         delay={800} />
     </div>
     <div class="days-passed">
       <StatusCard 
-        title="Scho verbii" 
-        value={$daysPassed} 
+        title="{$daysPassed >= 0 ? 'Scho verbii' : 'Bis zum Afang'}" 
+        value={Math.abs(Math.min($daysTotal, $daysPassed))} 
         unit=" Täg"
         delay={1600} 
         text="Hie sind alli Täg mit iberächnet, au s Wucheend." />
@@ -110,6 +113,14 @@
 
   .kpi-grid > * {
     width: 100%;
+  }
+
+  .kpi-grid .date-selection {
+    grid-column: 1 / 4;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    align-items: center;
+    gap: 1rem;
   }
 
   .kpi-grid .progress {
