@@ -20,23 +20,6 @@
   })
 
   $: weekDayTweened.set(weekDay)
-  
-  let progressMessages = [
-    'Es würd no luschtig!',
-    'So langsam isch mä dinnä',
-    'D hälfti isch scho verbii!',
-    'Fascht gschafft!'
-  ]
-
-  let weekDayMessages = [
-    'Es isch scho wieder Mäntig...',
-    'Immerhin scho ei Tag verbii!',
-    'Mittwuch gids Uusgang!',
-    'Nur no zwei Täg!',
-    'Es isch wider Friitig!',
-    'Wucheend!',
-    'Und das ganze noch ein mal...'
-  ]
 </script>
 
 <main>
@@ -50,7 +33,7 @@
     </div>
     <div class="week">
       <StatusCard 
-        title={$t('home.week')} 
+        title={$t('home.week')}
         value={Math.max(0, Math.min(Math.ceil($daysPassed / 7), Math.ceil($daysTotal / 7)))} />
     </div>
     <div class="progress">
@@ -58,7 +41,7 @@
         title={$t('home.progress')}
         value={Math.max(0, percentage)} 
         unit="%"
-        text={percentage < 100 ? progressMessages[Math.max(0, Math.floor(percentage / 25))] : $t('home.progress-done')}
+        text={percentage < 100 ? $t('home.progress-messages')[Math.max(0, Math.floor(percentage / 25))] : $t('home.progress-done')}
         delay={800} />
     </div>
     <div class="days-passed">
@@ -74,7 +57,7 @@
       <StatusCard 
         title={$t('home.total')} 
         value={$daysTotal} 
-        text="Isch au irgendwenn verbii..."
+        text={$t('home.total-message')}
         delay={2400} />
     </div>
     <div class="card soon-weekend">
@@ -84,7 +67,7 @@
           <span class="inline" class:active-week-day={$weekDayTweened <= i}>{day}</span>
         {/each}
       </span>
-      <p>{weekDayMessages[weekDay - 1]}</p>
+      <p>{$t('home.soon-weekend-messages')[weekDay - 1]}</p>
     </div>
   </div>
 </main>

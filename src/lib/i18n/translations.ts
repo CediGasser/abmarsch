@@ -1,4 +1,4 @@
-type Translations = {[key: string]: {[key: string]: string}}
+type Translations = {[key: string]: {[key: string]: string | string[]}}
 
 const translations: Translations = {
   de: {
@@ -8,12 +8,28 @@ const translations: Translations = {
     "home.week": "Wuchä",
     "home.progress": "Fortschritt",
     "home.progress-done": "Fertig!!",
+    "home.progress-messages": [
+      'Es würd no luschtig!',
+      'So langsam isch mä dinnä',
+      'D hälfti isch scho verbii!',
+      'Fascht gschafft!'
+    ],
     "home.already-done": "Scho verbii",
     "home.already-done-text": "Hie sind alli Täg mit iberächnet, au s Wucheend.",
     "home.until-start": "Bis zum Afang",
     "home.days": " Täg",
     "home.total": "Total",
+    "home.total-message": "Isch au irgendwenn verbii...",
     "home.soon-weekend": "Glii is Wuchänänd?",
+    "home.soon-weekend-messages": [
+      'Es isch scho wieder Mäntig...',
+      'Immerhin scho ei Tag verbii!',
+      'Mittwuch gids Uusgang!',
+      'Nur no zwei Täg!',
+      'Es isch wider Friitig!',
+      'Wucheend!',
+      'Und das ganze noch ein mal...'
+    ],
     "ranks.rekrut": "Rekrut (Rekr)",
     "ranks.soldat": "Soldat (Sdt)",
     "ranks.gefreiter": "Gefreiter (Gfr)",
@@ -47,12 +63,28 @@ const translations: Translations = {
     "home.week": "Semaine",
     "home.progress": "Progrès",
     "home.progress-done": "Fini!!",
+    "home.progress-messages": [
+      'C\'est encore amusant!',
+      'Ça commence à être drôle',
+      'La moitié est déjà passée',
+      'On y est presque'
+    ],
     "home.already-done": "Déjà fait",
     "home.already-done-text": "Ici sont comptés tous les jours, y compris le week-end.",
     "home.until-start": "Jusqu'au début",
     "home.days": " Jours",
     "home.total": "Total",
+    "home.total-message": "Ça finit aussi un jour",
     "home.soon-weekend": "Bientôt le week-end",
+    "home.soon-weekend-messages": [
+      'C\'est déjà lundi...',
+      'Au moins un jour est passé!',
+      'Mercredi, il y a sortie!',
+      'Plus que deux jours!',
+      'C\'est déjà vendredi!',
+      'Week-end!',
+      'Et tout encore une fois...'
+    ],
     "ranks.rekrut": "Recrue (Recr)",
     "ranks.soldat": "Soldat (Sdt)",
     "ranks.gefreiter": "Appointé (app)",
