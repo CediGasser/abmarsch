@@ -1,9 +1,11 @@
 <script lang="ts">
-  import DateInput from '$lib/components/DateInput.svelte'
   import { tweened } from 'svelte/motion';
   import { expoOut } from 'svelte/easing';
 
   import { startDate, endDate, daysTotal, daysPassed } from '$lib/stores/Dates'
+  import { t } from '$lib/i18n'
+  
+  import DateInput from '$lib/components/DateInput.svelte'
   import StatusCard from '$lib/components/StatusCard.svelte'
 
   $: percentage = Math.min(Math.round($daysPassed / $daysTotal * 100), 100)
@@ -39,44 +41,44 @@
 
 <main>
   <header>
-    <h1>Figged sie de Bode!</h1>
+    <h1>{$t('home.title')}</h1>
   </header>
   <div class="kpi-grid">
     <div class="card date-selection">
-        <h4>Start</h4> <DateInput bind:value={$startDate} />
-        <h4>End</h4> <DateInput bind:value={$endDate} />
+        <h4>{$t('home.start')}</h4> <DateInput bind:value={$startDate} />
+        <h4>{$t('home.end')}</h4> <DateInput bind:value={$endDate} />
     </div>
     <div class="week">
       <StatusCard 
-        title="Wuchä" 
+        title={$t('home.week')} 
         value={Math.max(0, Math.min(Math.ceil($daysPassed / 7), Math.ceil($daysTotal / 7)))} />
     </div>
     <div class="progress">
       <StatusCard 
-        title="Fortschritt" 
+        title={$t('home.progress')}
         value={Math.max(0, percentage)} 
         unit="%"
-        text={percentage > 100 ? progressMessages[Math.round(percentage / 25 - 1)] : 'Fertiig!!'}
+        text={percentage < 100 ? progressMessages[Math.max(0, Math.floor(percentage / 25))] : $t('home.progress-done')}
         delay={800} />
     </div>
     <div class="days-passed">
       <StatusCard 
-        title="{$daysPassed >= 0 ? 'Scho verbii' : 'Bis zum Afang'}" 
+        title="{$daysPassed >= 0 ? $t('home.already-done') : $t('home.until-start')}" 
         value={Math.abs(Math.min($daysTotal, $daysPassed))} 
-        unit=" Täg"
+        unit={$t('home.days')}
         delay={1600} 
-        text="Hie sind alli Täg mit iberächnet, au s Wucheend." />
+        text={$t('home.already-done-text')} />
     </div>
 
     <div class="total-days">
       <StatusCard 
-        title="Total" 
+        title={$t('home.total')} 
         value={$daysTotal} 
         text="Isch au irgendwenn verbii..."
         delay={2400} />
     </div>
     <div class="card soon-weekend">
-      <h4>Glii Wuchäend?</h4>
+      <h4>{$t('home.soon-weekend')}</h4>
       <span class="week-day-list">
         {#each weekDays as day, i}
           <span class="inline" class:active-week-day={$weekDayTweened <= i}>{day}</span>

@@ -1,129 +1,130 @@
 <script lang="ts">
+  import { t } from "$lib/i18n";
   import RankCard from "$lib/components/RankCard.svelte";
 
   let ranks = [
     {
-      name: 'rank-rekrut',
+      name: 'ranks.rekrut',
       src: '/rank/rekrut.png',
       place: 0
     },
     {
-      name: 'rank-soldat',
+      name: 'ranks.soldat',
       src: '/rank/soldat.png',
       place: 1
     },
     {
-      name: 'rank-gefreiter',
+      name: 'ranks.gefreiter',
       src: '/rank/gefreiter.png',
       place: 2
     },
     {
-      name: 'rank-obergefreiter',
+      name: 'ranks.obergefreiter',
       src: '/rank/obergefreiter.png',
       place: 3
     },
     {
-      name: 'rank-korporal',
+      name: 'ranks.korporal',
       src: '/rank/korporal.png',
       place: 4
     },
     {
-      name: 'rank-wachtmeister',
+      name: 'ranks.wachtmeister',
       src: '/rank/wachtmeister.png',
       place: 5
     },
     {
-      name: 'rank-oberwachtmeister',
+      name: 'ranks.oberwachtmeister',
       src: '/rank/oberwachtmeister.png',
       place: 6
     },
     {
-      name: 'rank-feldweibel',
+      name: 'ranks.feldweibel',
       src: '/rank/feldweibel.png',
       place: 7
     },
     {
-      name: 'rank-fourier',
+      name: 'ranks.fourier',
       src: '/rank/fourier.png',
       place: 8
     },
     {
-      name: 'rank-hauptfeldweibel',
+      name: 'ranks.hauptfeldweibel',
       src: '/rank/hauptfeldweibel.png',
       place: 9
     },
     {
-      name: 'rank-adjutant-unteroffizier',
+      name: 'ranks.adjutant-unteroffizier',
       src: '/rank/adjutant-unteroffizier.png',
       place: 10
     },
     {
-      name: 'rank-stabsadjutant',
+      name: 'ranks.stabsadjutant',
       src: '/rank/stabsadjutant.png',
       place: 11
     },
     {
-      name: 'rank-hauptadjutant',
+      name: 'ranks.hauptadjutant',
       src: '/rank/hauptadjutant.png',
       place: 12
     },
     {
-      name: 'rank-chefadjutant',
+      name: 'ranks.chefadjutant',
       src: '/rank/chefadjutant.png',
       place: 13
     },
     {
-      name: 'rank-leutnant',
+      name: 'ranks.leutnant',
       src: '/rank/leutnant.png',
       place: 14
     },
     {
-      name: 'rank-oberleutnant',
+      name: 'ranks.oberleutnant',
       src: '/rank/oberleutnant.png',
       place: 15
     },
     {
-      name: 'rank-hauptmann',
+      name: 'ranks.hauptmann',
       src: '/rank/hauptmann.png',
       place: 16
     },
     {
-      name: 'rank-major',
+      name: 'ranks.major',
       src: '/rank/major.png',
       place: 17
     },
     {
-      name: 'rank-oberstleutnant',
+      name: 'ranks.oberstleutnant',
       src: '/rank/oberstleutnant.png',
       place: 18
     },
     {
-      name: 'rank-oberst',
+      name: 'ranks.oberst',
       src: '/rank/oberst.png',
       place: 19
     },
     {
-      name: 'rank-fachoffizier',
+      name: 'ranks.fachoffizier',
       src: '/rank/fachoffizier.png',
       place: 20
     },
     {
-      name: 'rank-brigadier',
+      name: 'ranks.brigadier',
       src: '/rank/brigadier.png',
       place: 21
     },
     {
-      name: 'rank-graddivisionaer',
+      name: 'ranks.graddivisionaer',
       src: '/rank/graddivisionaer.png',
       place: 22
     },
     {
-      name: 'rank-gradkorpskommandant',
+      name: 'ranks.gradkorpskommandant',
       src: '/rank/gradkorpskommandant.png',
       place: 23
     },
     {
-      name: 'rank-general',
+      name: 'ranks.general',
       src: '/rank/general.png',
       place: 24
     },
@@ -133,7 +134,7 @@
 <main>
   <div class="ranks">
     {#each ranks as { name, src }}
-      <RankCard {name} {src} />
+      <RankCard name={$t(name)} {src} />
     {/each}
   </div>
 </main>
