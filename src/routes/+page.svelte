@@ -10,7 +10,7 @@
 
   $: percentage = Math.min(Math.round($daysPassed / $daysTotal * 100), 100)
 
-  let weekDay = new Date().getDay()
+  let weekDay = new Date().getDay() - 1
   let weekDays = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So']
 
   let weekDayTweened = tweened(0, {
@@ -64,10 +64,10 @@
       <h4>{$t('home.soon-weekend')}</h4>
       <span class="week-day-list">
         {#each weekDays as day, i}
-          <span class="inline" class:active-week-day={$weekDayTweened <= i}>{day}</span>
+          <span class:active-week-day={i <= $weekDayTweened}>{day}</span>
         {/each}
       </span>
-      <p>{$t('home.soon-weekend-messages')[weekDay - 1]}</p>
+      <p>{$t('home.soon-weekend-messages')[weekDay]}</p>
     </div>
   </div>
 </main>
@@ -82,10 +82,11 @@
     font-size: 2rem;
     margin-inline: 2px;
     margin-block: 0;
+    color: var(--c-bodyDimmed);
   }
 
-  .active-week-day {
-    color: var(--c-bodyDimmed);
+  span.active-week-day {
+    color: var(--c-body);
   }
   
   .kpi-grid {
