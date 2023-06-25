@@ -14,7 +14,7 @@
 	--lineHeightRelativeAmount: 1.1em;
 	--globalLineHeight: calc(var(--lineHeightFixedAmount) + var(--lineHeightRelativeAmount));
 
-	--fontFamily: Futura;
+	--fontFamily: Futura, roboto, sans-serif;
 
 	/* Spacing */
 	--unit: 0.6rem;
