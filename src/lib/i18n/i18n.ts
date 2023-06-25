@@ -19,7 +19,29 @@ function getLocale(): string {
   return "de";
 }
 
-export const locale = writable(getLocale());
+function createLocaleStore() {
+  const { subscribe, update, set } = writable<string>(getLocale())
+  return {
+    subscribe,
+    update,
+    set: (value: string): void => {
+      if (locales.includes(value)) {
+        // updating the locale in local storage
+        if (browser) localStorage.setItem('locale', value);
+
+        // updating the locale in the cookie
+        if (browser) document.cookie = `locale=${value}; path=/`;
+
+        // updating the locale in the store
+        set(value)
+      } else {
+        console.error(`no translations for locale "${value}"`);
+      }
+    }
+  }
+}
+
+export const locale = createLocaleStore();
 
 function translate(locale: string, key: string, vars: {[key: string]: string}) : any {
   // Let's throw some errors if we're trying to use keys/locales that don't exist.
