@@ -176,5 +176,6 @@
 
   .ranks > div {
     width: 70vw;
+    max-width: 300px;
   }
 </style>
