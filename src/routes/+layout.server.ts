@@ -1,7 +1,7 @@
 import type { LayoutServerLoad } from "./$types"
 import { locales } from "$lib/i18n"
 
-export const load: LayoutServerLoad = async ({ request, cookies }) => {
+export const load: LayoutServerLoad = async ({ request, cookies, url }) => {
   // If there's a locale cookie, use that.
   let locale = cookies.get('locale');
 
@@ -34,6 +34,7 @@ export const load: LayoutServerLoad = async ({ request, cookies }) => {
   cookies.set('locale', locale, { path: '/', httpOnly: false });
 
   return {
-    locale
+    locale,
+    pathname: url.pathname
   }
 };

@@ -80,6 +80,8 @@
 	line-height: var(--globalLineHeight);
 	color: var(--c-body);
 	background-color: var(--c-background);
+
+	scroll-behavior: smooth;
 }
 
 /* Dark mode Styles */
@@ -98,6 +100,12 @@
 
 main {
 	padding: var(--space-l);
+	min-height: 100dvh;
+}
+
+a {
+	text-decoration: none;
+	color: var(--c-body);
 }
 
 .card {

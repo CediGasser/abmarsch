@@ -30,6 +30,8 @@ const translations: Translations = {
       'Wucheend!',
       'Und das ganze noch ein mal...'
     ],
+    "home.learn-by-heart": "Uswändig lerne",
+    "ranks.title": "Grade",
     "ranks.rekrut": "Rekrut (Rekr)",
     "ranks.soldat": "Soldat (Sdt)",
     "ranks.gefreiter": "Gefreiter (Gfr)",
@@ -85,6 +87,8 @@ const translations: Translations = {
       'Week-end!',
       'Et tout encore une fois...'
     ],
+    "home.learn-by-heart": "Apprendre par coeur",
+    "ranks.title": "Rangs",
     "ranks.rekrut": "Recrue (Recr)",
     "ranks.soldat": "Soldat (Sdt)",
     "ranks.gefreiter": "Appointé (app)",

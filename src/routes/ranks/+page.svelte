@@ -1,6 +1,7 @@
 <script lang="ts">
   import { t } from "$lib/i18n";
   import RankCard from "$lib/components/RankCard.svelte";
+  import { send, receive } from "$lib/assets/Crossfade";
 
   let ranks = [
     {
@@ -132,19 +133,48 @@
 </script>
 
 <main>
+  <header>
+    <a href="/">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="48" height="48" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M5 12l14 0"></path>
+        <path d="M5 12l6 6"></path>
+        <path d="M5 12l6 -6"></path>
+      </svg>
+    </a>
+    <div
+      out:send|global={{ key: 'a' }} 
+      in:receive|global={{ key: 'a' }}>
+      <h1>{$t('ranks.title')}</h1>
+    </div>
+  </header>
   <div class="ranks">
     {#each ranks as { name, src }}
-      <RankCard name={$t(name)} {src} />
+      <div>   
+        <RankCard name={$t(name)} {src} />
+      </div>
     {/each}
   </div>
 </main>
 
 <style>
+  header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: start;
+    gap: var(--space-l);
+  }
+
   .ranks {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: 1rem;
+  }
+
+  .ranks > div {
+    width: 70vw;
   }
 </style>

@@ -3,13 +3,16 @@
   import '$lib/assets/global.css'
 
   import { locales, locale } from '$lib/i18n';
+  import PageTransition from '$lib/components/PageTransition.svelte';
 
   export let data;
 
   locale.set(data.locale);
 </script>
 
-<slot />
+<PageTransition refresh={data.pathname} duration={200}>
+  <slot />
+</PageTransition>
 
 <footer>
   <div>

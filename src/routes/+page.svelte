@@ -1,6 +1,7 @@
 <script lang="ts">
   import { tweened } from 'svelte/motion';
   import { expoOut } from 'svelte/easing';
+  import { send, receive } from '$lib/assets/Crossfade';
 
   import { startDate, endDate, daysTotal, daysPassed } from '$lib/stores/Dates'
   import { t } from '$lib/i18n'
@@ -70,9 +71,41 @@
       <p>{$t('home.soon-weekend-messages')[weekDay]}</p>
     </div>
   </div>
+  <a href="/ranks">
+    <div class="card link-card">
+      <div class="link-card-left">
+        <h4>{$t('home.learn-by-heart')}</h4>
+        <div
+          out:send|global={{ key: 'a' }} 
+          in:receive|global={{ key: 'a' }}>
+          <h1>{$t('ranks.title')}</h1>
+        </div>
+      </div>
+      <div class="link-card-right">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-right" width="64" height="64" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M5 12l14 0"></path>
+          <path d="M13 18l6 -6"></path>
+          <path d="M13 6l6 6"></path>
+        </svg>
+      </div>
+    </div>
+  </a>
 </main>
 
 <style>
+  .link-card {
+    margin-block: var(--space-l);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .link-card-right {
+    padding-inline: var(--space-xl);
+  }
+
   .week-day-list {
     display: flex;
     justify-content: space-between;
