@@ -51,5 +51,6 @@
     background-color: var(--c-overlay);
     color: var(--c-body);
     font-size: 0.8rem;
+    top: 100dvh;
   }
 </style>
