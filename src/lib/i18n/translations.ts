@@ -21,6 +21,15 @@ const translations: Translations = {
     "home.total": "Totale",
     "home.total-message": "Anche questo finisce un giorno",
     "home.soon-weekend": "Presto il fine settimana",
+    "home.soon-weekend-days-abbr": [
+      "Lu",
+      "Ma",
+      "Me",
+      "Gi",
+      "Ve",
+      "Sa",
+      "Do"
+    ],
     "home.soon-weekend-messages": [
       'È già lunedì...',
       'Almeno un giorno è passato!',
@@ -78,6 +87,15 @@ const translations: Translations = {
     "home.total": "Total",
     "home.total-message": "Isch au irgendwenn verbii...",
     "home.soon-weekend": "Glii is Wuchänänd?",
+    "home.soon-weekend-days-abbr": [
+      "Mo",
+      "Di",
+      "Mi",
+      "Do",
+      "Fr",
+      "Sa",
+      "So"
+    ],
     "home.soon-weekend-messages": [
       'Es isch scho wieder Mäntig...',
       'Immerhin scho ei Tag verbii!',
@@ -135,6 +153,15 @@ const translations: Translations = {
     "home.total": "Total",
     "home.total-message": "Ça finit aussi un jour",
     "home.soon-weekend": "Bientôt le week-end",
+    "home.soon-weekend-days-abbr": [
+      "Lu",
+      "Ma",
+      "Me",
+      "Je",
+      "Ve",
+      "Sa",
+      "Di"
+    ],
     "home.soon-weekend-messages": [
       'C\'est déjà lundi...',
       'Au moins un jour est passé!',

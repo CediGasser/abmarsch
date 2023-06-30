@@ -12,7 +12,6 @@
   $: percentage = Math.min(Math.round($daysPassed / $daysTotal * 100), 100)
 
   let weekDay = new Date().getDay() - 1
-  let weekDays = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So']
 
   let weekDayTweened = tweened(0, {
     delay: 3600,
@@ -64,7 +63,7 @@
     <div class="card soon-weekend">
       <h4>{$t('home.soon-weekend')}</h4>
       <span class="week-day-list">
-        {#each weekDays as day, i}
+        {#each $t('home.soon-weekend-days-abbr') as day, i}
           <span class:active-week-day={i <= $weekDayTweened}>{day}</span>
         {/each}
       </span>
