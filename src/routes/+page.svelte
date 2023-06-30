@@ -34,7 +34,8 @@
     <div class="week">
       <StatusCard 
         title={$t('home.week')}
-        value={Math.max(0, Math.min(Math.ceil($daysPassed / 7), Math.ceil($daysTotal / 7)))} />
+        value={Math.max(0, Math.min(Math.ceil($daysPassed / 7), Math.ceil($daysTotal / 7)))} 
+        text={$t('home.week-text', { weeks: Math.max(0, Math.min(Math.ceil($daysTotal / 7), Math.ceil($daysTotal / 7))).toString() })} />
     </div>
     <div class="progress">
       <StatusCard 

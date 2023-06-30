@@ -6,6 +6,7 @@ const translations: Translations = {
     "home.start": "Inizio",
     "home.end": "Fine",
     "home.week": "Settimana",
+    "home.week-text": "/ {{weeks}} Settimane",
     "home.progress": "Progresso",
     "home.progress-done": "Fatto!!",
     "home.progress-messages": [
@@ -72,6 +73,7 @@ const translations: Translations = {
     "home.start": "Start",
     "home.end": "End",
     "home.week": "Wuchä",
+    "home.week-text": "/ {{weeks}} Wuchä",
     "home.progress": "Fortschritt",
     "home.progress-done": "Fertig!!",
     "home.progress-messages": [
@@ -138,6 +140,7 @@ const translations: Translations = {
     "home.start": "Début",
     "home.end": "Fin",
     "home.week": "Semaine",
+    "home.week-text": "/ {{weeks}} Semaines",
     "home.progress": "Progrès",
     "home.progress-done": "Fini!!",
     "home.progress-messages": [
