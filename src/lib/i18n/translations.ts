@@ -26,7 +26,7 @@ const translations: Translations = {
       'Immerhin scho ei Tag verbii!',
       'Mittwuch gids Uusgang!',
       'Nur no zwei Täg!',
-      'Es isch wider Friitig!',
+      'Wichtig isch... Dass Fritig isch!',
       'Wucheend!',
       'Und das ganze noch ein mal...'
     ],
