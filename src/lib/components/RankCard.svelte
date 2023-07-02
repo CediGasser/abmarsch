@@ -2,6 +2,7 @@
   export let src = 'favicon.png'
   export let name = 'Rekrut'
   export let flipped = false
+  export let lazyLoad = true
 
   const handleClick = (e: any) => {
     if (e.key && e.key !== 'Enter') return
@@ -9,10 +10,10 @@
   }
 </script>
 
-<div class="rank-card" on:click={handleClick} on:keyup={handleClick} class:flipped>
-  <img {src} alt={name} />
+<div role="button" tabindex="0" class="rank-card" on:click={handleClick} on:keyup={handleClick} class:flipped>
+  <img loading={lazyLoad || lazyLoad == undefined ? 'lazy' : 'eager'} {src} alt={name} />
   <div class="result">
-    <h4>{name}</h4>
+    <h2>{name}</h2>
   </div>
 </div>
 
@@ -56,7 +57,7 @@
     transform: rotateY(180deg);
   }
 
-  .rank-card .result h4 {
+  .rank-card .result h2 {
     margin: 0;
     color: var(--c-body);
     font-size: 1.5rem;

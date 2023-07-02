@@ -33,8 +33,8 @@
   </header>
   <div class="kpi-grid">
     <div class="card date-selection">
-        <h4>{$t('home.start')}</h4> <DateInput bind:value={$startDate} />
-        <h4>{$t('home.end')}</h4> <DateInput bind:value={$endDate} />
+        <label for="startDate"><h2>{$t('home.start')}</h2></label> <DateInput id="startDate" bind:value={$startDate} />
+        <label for="endDate"><h2>{$t('home.end')}</h2></label> <DateInput id="endDate" bind:value={$endDate} />
     </div>
     <div class="week">
       <StatusCard 
@@ -67,7 +67,7 @@
         delay={2400} />
     </div>
     <div class="card soon-weekend">
-      <h4>{$t('home.soon-weekend')}</h4>
+      <h2>{$t('home.soon-weekend')}</h2>
       <span class="week-day-list">
         {#each $t('home.soon-weekend-days-abbr') as day, i}
           <span class:active-week-day={i <= $weekDayTweened}>{day}</span>
@@ -79,7 +79,7 @@
   <a href="/ranks">
     <div class="card link-card">
       <div class="link-card-left">
-        <h4>{$t('home.learn-by-heart')}</h4>
+        <h2>{$t('home.learn-by-heart')}</h2>
         <div
           out:send|global={{ key: 'a' }} 
           in:receive|global={{ key: 'a' }}>

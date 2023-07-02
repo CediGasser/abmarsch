@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
 
     export let value: Date = new Date()
+    export let id: string | undefined = undefined
 
     let input: HTMLInputElement
 
@@ -14,7 +15,7 @@
     })
 </script>
 
-<input type="date" bind:this={input} on:change={dateChange} />
+<input {id} type="date" bind:this={input} on:change={dateChange} />
 
 <style>
     input {

@@ -116,8 +116,10 @@ a {
 	height: 100%;
 }
 
-.card h4 {
+.card h2 {
 	line-height: var(--globalLineHeight);
+	font-size: var(--text-s);
+	margin-bottom: var(--space-xs);
 }
 
 .card span {

@@ -19,7 +19,7 @@
 </script>
 
 <div class="card">
-  <h4>{title}</h4>
+  <h2>{title}</h2>
   <span>{Math.round($progress)}{unit}</span>
   <p>{text}</p>
 </div>
