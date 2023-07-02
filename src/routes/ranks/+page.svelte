@@ -1,7 +1,9 @@
 <script lang="ts">
-  import { t } from "$lib/i18n";
-  import RankCard from "$lib/components/RankCard.svelte";
-  import { send, receive } from "$lib/assets/Crossfade";
+  import { send, receive } from '$lib/assets/Crossfade'
+  import { t } from '$lib/i18n'
+
+  import RankCard from '$lib/components/RankCard.svelte'
+  import Seo from '$lib/components/Seo.svelte'
 
   let ranks = [
     {
@@ -131,6 +133,10 @@
     },
   ]
 </script>
+
+<Seo title={$t('seo.title-ranks')}
+  description={$t('seo.description-ranks')}
+  keywords={$t('seo.keywords-ranks')} />
 
 <main>
   <header>

@@ -8,6 +8,7 @@
   
   import DateInput from '$lib/components/DateInput.svelte'
   import StatusCard from '$lib/components/StatusCard.svelte'
+  import Seo from '$lib/components/Seo.svelte'
 
   $: percentage = Math.min(Math.round($daysPassed / $daysTotal * 100), 100)
 
@@ -21,6 +22,10 @@
 
   $: weekDayTweened.set(weekDay)
 </script>
+
+<Seo title={$t('seo.title-home')}
+  description={$t('seo.description-home')}
+  keywords={$t('seo.keywords-home')} />
 
 <main>
   <header>

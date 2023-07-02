@@ -2,6 +2,13 @@ type Translations = {[key: string]: {[key: string]: string | string[]}}
 
 const translations: Translations = {
   it: {
+    "seo.title-home": "RS Rechner - Quanti giorni ancora?",
+    "seo.title-ranks": "RS Rechner - Impara i gradi",
+    "seo.description-home": "Quanti giorni mancano alla fine della RS? Cosa abbiamo già fatto? Qui trovi le risposte.",
+    "seo.description-ranks": "Qui puoi imparare i gradi dell'esercito svizzero. Non dire mai al tuo tenente 'Sergente'!",
+    "seo.keywords-home": "RS, scuola di reclute, esercito svizzero, svizzera, recluta, soldato, RS Rechner, calcolatrice, giorni, fine settimana, wochä",
+    "seo.keywords-ranks": "RS, gradi, imparare, imparare i gradi, esercito svizzero, svizzera, recluta, soldato",
+    "seo.image": "/social_preview.webp",
     "home.title": "Per i ticinesi è la stessa cosa.",
     "home.start": "Inizio",
     "home.end": "Fine",
@@ -69,6 +76,13 @@ const translations: Translations = {
     "ranks.general": "Generale"
   },
   de: {
+    "seo.title-home": "RS Rechner - Wieviele Tage noch?",
+    "seo.title-ranks": "RS Rechner - Grade lernen",
+    "seo.description-home": "Wie viele Tage noch bis zum Ende der RS? Was haben wir bereits geschafft? Hier findest du die Antworten.",
+    "seo.description-ranks": "Hier kannst du die Grade der Schweizer Armee lernen. Sag nie deinem Leutnant 'Wachtmeister'!",
+    "seo.keywords-home": "RS, Rekrutenschule, Schweizer Armee, Schweiz, Rekrut, Soldat, RS Rechner, Rechner, Tage, Wochenende, Wochä",
+    "seo.keywords-ranks": "RS, Grade, lernen, Grade lernen, Schweizer Armee, Schweiz, Rekrut, Soldat",
+    "seo.image": "/social_preview.webp",
     "home.title": "Figged sie de Bode!",
     "home.start": "Start",
     "home.end": "End",
@@ -136,6 +150,13 @@ const translations: Translations = {
     "ranks.general": "General"
   },
   fr: {
+    "seo.title-home": "RS Rechner - Combien de jours encore?",
+    "seo.title-ranks": "RS Rechner - Apprendre les grades",
+    "seo.description-home": "Combien de jours encore jusqu'à la fin de la RS? Qu'avons-nous déjà accompli? Ici tu trouveras les réponses.",
+    "seo.description-ranks": "Ici tu peux apprendre les grades de l'armée suisse. Ne dis jamais à ton lieutenant 'sergent'!", 
+    "seo.keywords-home": "RS, école de recrues, armée suisse, suisse, recrue, soldat, RS Rechner, calculatrice, jours, week-end, semaines",
+    "seo.keywords-ranks": "RS, grades, apprendre, apprendre les grades, armée suisse, suisse, recrue, soldat",
+    "seo.image": "/social_preview.webp",
     "home.title": "Pour les romands, c'est la même chose.",
     "home.start": "Début",
     "home.end": "Fin",
