@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let src = 'favicon.png'
+  export let src = 'favicon-32x32.png'
   export let name = 'Rekrut'
   export let flipped = false
   export let lazyLoad = true
