@@ -12,11 +12,12 @@
 
   $: percentage = Math.min(Math.round($daysPassed / $daysTotal * 100), 100)
 
-  let weekDay = new Date().getDay() - 1
+  // 0 = Sunday, 1 = Monday, ...
+  let weekDay = new Date().getDay() - 1 < 0 ? 6 : new Date().getDay() - 1
 
   let weekDayTweened = tweened(0, {
     delay: 3600,
-    duration: 2000,
+    duration: 1000,
     easing: expoOut
   })
 
