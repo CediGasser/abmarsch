@@ -5,7 +5,6 @@
     export let canonical: string | undefined = undefined;
     export let type: 'website' | 'article' | 'site' | 'book' | 'profile' = 'site';
     export let image: string = '/social_preview.webp';
-    export let themeColor: string | undefined = undefined;
 </script>
 
 <svelte:head>
@@ -40,8 +39,4 @@
         <meta name="twitter:description" content={description} />
     {/if}
     <meta name="twitter:image" content={image} />
-
-    {#if themeColor}
-        <meta name="theme-color" content={themeColor} />
-    {/if}
 </svelte:head>
