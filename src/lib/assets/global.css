@@ -156,9 +156,17 @@ h3 {
 }
 
 .date-input {
-	display: inline;
 	--date-picker-foreground: var(--c-body);
-	--date-picker-background: transparent;
+	--date-picker-background: var(--c-background);
+	--date-picker-selected-color: var(--c-body);
+	--date-picker-selected-background: var(--c-background);
 	--date-input-width: 100%;
-	font-size: 1.5rem;
+	font-size: var(--text-s);
+	line-height: var(12px);
+}
+
+.cell span {
+	font-size: var(--text-s);
+	line-height: var(--globalLineHeight);
+	margin-bottom: 2px;
 }

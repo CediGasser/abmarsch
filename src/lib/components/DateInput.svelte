@@ -11,9 +11,7 @@
     value = new Date(input.valueAsNumber)
   }
 
-  onMount(() => {
-    input.valueAsNumber = value.getTime()
-  })
+  $: console.log(value)
 </script>
 
 <DateInput class="date-input" format="yyyy-MM-dd" bind:value />
