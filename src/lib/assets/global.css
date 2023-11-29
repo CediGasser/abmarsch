@@ -154,3 +154,11 @@ h2 {
 h3 {
 	font-size: var(--text-m);
 }
+
+.date-input {
+	display: inline;
+	--date-picker-foreground: var(--c-body);
+	--date-picker-background: transparent;
+	--date-input-width: 100%;
+	font-size: 1.5rem;
+}

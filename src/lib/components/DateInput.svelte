@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { DateInput } from 'date-picker-svelte'
   import { onMount } from 'svelte'
 
   export let value: Date = new Date()
@@ -15,17 +16,4 @@
   })
 </script>
 
-<input {id} type="date" bind:this={input} on:change={dateChange} />
-
-<style>
-  input {
-    display: inline;
-    color: var(--c-body);
-    padding-inline: var(--textFrameX);
-    padding-block: var(--textFrameY);
-    font-size: 1.5rem;
-    background-color: var(--c-overlay);
-    border: var(--fieldBorderWidth);
-    border-radius: var(--radius);
-  }
-</style>
+<DateInput class="date-input" format="yyyy-MM-dd" bind:value />
