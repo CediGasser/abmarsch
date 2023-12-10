@@ -125,7 +125,7 @@
     },
     {
       name: 'ranks.gradkorpskommandant',
-      src: '/rank/gradkorpskommandant.webp ',
+      src: '/rank/korpskommandant.webp ',
       place: 23
     },
     {
