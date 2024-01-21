@@ -4,10 +4,21 @@
 
   import { locales, locale } from '$lib/i18n';
   import PageTransition from '$lib/components/PageTransition.svelte';
+  import { onMount } from 'svelte'
+  import { page } from '$app/stores';
 
   export let data;
 
   locale.set(data.locale);
+
+
+  // detect if we're in an iframe and redirect to the noiframe version
+  onMount(() => {
+    const inIframe = window.self !== window.top;
+    if (inIframe && $page.route.id !== '/noiframe') {
+      window.location.href = '/noiframe';
+    }
+  })
 </script>
 
 <PageTransition refresh={data.pathname} duration={200}>
