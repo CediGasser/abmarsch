@@ -27,11 +27,6 @@
 </footer>
 
 <style>
-  select {
-    background-color: var(--c-overlay);
-    color: var(--c-body);
-  }
-
   a {
     color: var(--c-body);
     text-decoration: none;
