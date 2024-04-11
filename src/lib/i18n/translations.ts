@@ -2,6 +2,7 @@ type Translations = { [key: string]: { [key: string]: string | string[] } }
 
 const translations: Translations = {
   it: {
+    'general.link-privacy': 'Informativa sulla privacy',
     'seo.title-home': 'RS Rechner - Quanti giorni ancora?',
     'seo.title-ranks': 'RS Rechner - Impara i gradi',
     'seo.description-home':
@@ -76,6 +77,7 @@ const translations: Translations = {
     'noiframe.start': 'Inizio',
   },
   de: {
+    'general.link-privacy': 'Datenschutzerklärung',
     'seo.title-home': 'RS Rechner - Wieviele Tage noch?',
     'seo.title-ranks': 'RS Rechner - Grade lernen',
     'seo.description-home':
@@ -150,6 +152,7 @@ const translations: Translations = {
     'noiframe.start': 'Start',
   },
   fr: {
+    'general.link-privacy': 'Déclaration de confidentialité',
     'seo.title-home': 'RS Rechner - Combien de jours encore?',
     'seo.title-ranks': 'RS Rechner - Apprendre les grades',
     'seo.description-home':

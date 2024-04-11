@@ -2,21 +2,20 @@
   import '$lib/assets/reset.css'
   import '$lib/assets/global.css'
 
-  import { locales, locale } from '$lib/i18n';
-  import PageTransition from '$lib/components/PageTransition.svelte';
+  import { locales, locale, t } from '$lib/i18n'
+  import PageTransition from '$lib/components/PageTransition.svelte'
   import { onMount } from 'svelte'
-  import { page } from '$app/stores';
+  import { page } from '$app/stores'
 
-  export let data;
+  export let data
 
-  locale.set(data.locale);
-
+  locale.set(data.locale)
 
   // detect if we're in an iframe and redirect to the noiframe version
   onMount(() => {
-    const inIframe = window.self !== window.top;
+    const inIframe = window.self !== window.top
     if (inIframe && $page.route.id !== '/noiframe') {
-      window.location.href = '/noiframe';
+      window.location.href = '/noiframe'
     }
   })
 </script>
@@ -35,6 +34,9 @@
       <option value={l}>{l}</option>
     {/each}
   </select>
+  <ul class="footer-links">
+    <li><a href="/privacy">{$t('general.link-privacy')}</a></li>
+  </ul>
 </footer>
 
 <style>
@@ -58,5 +60,9 @@
     color: var(--c-body);
     font-size: 0.8rem;
     top: 100dvh;
+  }
+
+  footer .footer-links {
+    list-style: none;
   }
 </style>
