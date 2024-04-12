@@ -35,6 +35,7 @@
     {/each}
   </select>
   <ul class="footer-links">
+    <li><a href="/contact">{$t('general.link-contact')}</a></li>
     <li><a href="/privacy">{$t('general.link-privacy')}</a></li>
   </ul>
 </footer>

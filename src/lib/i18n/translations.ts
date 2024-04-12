@@ -3,6 +3,14 @@ type Translations = { [key: string]: { [key: string]: string | string[] } }
 const translations: Translations = {
   it: {
     'general.link-privacy': 'Informativa sulla privacy',
+    'general.link-contact': 'Contatto',
+    'general.thanks': 'Grazie!',
+    'contact.title': 'Contatto',
+    'contact.text':
+      'Scrivi semplicemente se hai domande o idee. Se vuoi una risposta, fornisci anche il tuo indirizzo email.',
+    'contact.message': 'Messaggio',
+    'contact.message-placeholder': 'Scrivi qui il tuo testo...',
+    'contact.submit': 'Invia',
     'seo.title-home': 'RS Rechner - Quanti giorni ancora?',
     'seo.title-ranks': 'RS Rechner - Impara i gradi',
     'seo.description-home':
@@ -78,6 +86,14 @@ const translations: Translations = {
   },
   de: {
     'general.link-privacy': 'Datenschutzerklärung',
+    'general.link-contact': 'Kontakt',
+    'general.thanks': 'Merci!',
+    'contact.title': 'Kontakt',
+    'contact.text':
+      'Schrib eifach a wenn du Froge oder Ideeä hesch. Wennd en Antwort wotsch, denn gib au dini E-Mail Adrässi a.',
+    'contact.message': 'Nachricht',
+    'contact.message-placeholder': 'Schrib hie din Text...',
+    'contact.submit': 'Abschickä',
     'seo.title-home': 'RS Rechner - Wieviele Tage noch?',
     'seo.title-ranks': 'RS Rechner - Grade lernen',
     'seo.description-home':
@@ -153,6 +169,14 @@ const translations: Translations = {
   },
   fr: {
     'general.link-privacy': 'Déclaration de confidentialité',
+    'general.link-contact': 'Contact',
+    'general.thanks': 'Merci!',
+    'contact.title': 'Contact',
+    'contact.text':
+      'Écris simplement si tu as des questions ou des idées. Si tu veux une réponse, donne aussi ton adresse e-mail.',
+    'contact.message': 'Message',
+    'contact.message-placeholder': 'Écris ton texte ici...',
+    'contact.submit': 'Envoyer',
     'seo.title-home': 'RS Rechner - Combien de jours encore?',
     'seo.title-ranks': 'RS Rechner - Apprendre les grades',
     'seo.description-home':
