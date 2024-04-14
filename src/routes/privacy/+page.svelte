@@ -1,7 +1,7 @@
 <main>
   <section>
     <h1>
-      Datenschutzerklärung der Webseite <a href="figged-sie-de-bode.ch">
+      Datenschutzerklärung der Webseite <a href="/">
         figged-sie-de-bode.ch
       </a>
     </h1>
