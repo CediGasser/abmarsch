@@ -105,7 +105,7 @@ const translations: Translations = {
     'seo.keywords-ranks':
       'RS, Grade, lernen, Grade lernen, Schweizer Armee, Schweiz, Rekrut, Soldat',
     'seo.image': '/social_preview.webp',
-    'home.title': 'Figged sie de Bode!',
+    'home.title': 'Abmarsch!',
     'home.start': 'Start',
     'home.end': 'End',
     'home.week': 'Wuchä',

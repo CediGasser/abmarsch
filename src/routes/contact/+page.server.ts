@@ -25,7 +25,7 @@ export const actions = {
       console.log('Contact form submitted', { ipAddress, message })
       try {
         sendMessage({
-          username: 'Figged-sie-de-bode.ch Contact Form',
+          username: 'abmarsch.ch Contact Form',
           content: message,
         })
       } catch {
@@ -38,7 +38,7 @@ export const actions = {
         console.log('Rate limit reset', { ipAddress })
         try {
           sendMessage({
-            username: 'Figged-sie-de-bode.ch Rate Limit Reset',
+            username: 'abmarsch.ch Rate Limit Reset',
             content: `${ipAddress} was rate limited and has been reset.`,
           })
         } catch {

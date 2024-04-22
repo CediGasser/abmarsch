@@ -1,32 +1,25 @@
 <script lang="ts">
   import { t } from '$lib/i18n'
 
-  let buttonClicked = false;
+  let buttonClicked = false
 
   const handleClick = () => {
-    buttonClicked = true;
+    buttonClicked = true
   }
 </script>
 
 <main>
   {#if buttonClicked}
-  <h1>{$t('noiframe.realtitle')}</h1>
-  <a 
-    href="https://figged-sie-de-bode.ch" 
-    referrerpolicy="no-referrer"
-    target="_blank"
-  >
-    figged-sie-de-bode.ch
-  </a>
-    <video
-      width="533"
-      height="300"
-      controls
-      data-external="1"
-      autoplay
-    >
-      <track kind="captions">
-      <source src="https://xn--qei.cedricgasser.com/rickroll.mp4" type="video/mp4">
+    <h1>{$t('noiframe.realtitle')}</h1>
+    <a href="https://abmarsch.ch" referrerpolicy="no-referrer" target="_blank">
+      abmarsch.ch
+    </a>
+    <video width="533" height="300" controls data-external="1" autoplay>
+      <track kind="captions" />
+      <source
+        src="https://xn--qei.cedricgasser.com/rickroll.mp4"
+        type="video/mp4"
+      />
     </video>
   {:else}
     <h1>{$t('noiframe.title')}</h1>

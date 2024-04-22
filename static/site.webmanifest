@@ -1,40 +1,40 @@
 {
-    "name": "Figged Sie de Bode",
-    "short_name": "Figged Sie de Bode",
-    "description": "RS Rechner für die Schweizer Armee. Wieviele Tage dauerts noch?",
-    "icons": [
-        {
-            "src": "/android-chrome-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-            "src": "/android-chrome-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png"
-        },
-        {
-            "src": "/pwa/maskable_icon_x192.png",
-            "sizes": "192x192",
-            "type": "image/png",
-            "purpose": "maskable"
-        },
-        {
-            "src": "/pwa/maskable_icon_x512.png",
-            "sizes": "512x512",
-            "type": "image/png",
-            "purpose": "maskable"
-        }
-    ],
-    "shortcuts": [
-        {
-            "name": "Grade",
-            "description": "Grade der Schweizer Armee lernen.",
-            "url": "/ranks"
-        }
-    ],
-    "theme_color": "#4B6C42",
-    "background_color": "#0F161E",
-    "start_url": "https://figged-sie-de-bode.ch/",
-    "display": "standalone"
+  "name": "Abmarsch!",
+  "short_name": "Abmarsch!",
+  "description": "RS Rechner für die Schweizer Armee. Wieviele Tage dauerts noch?",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/pwa/maskable_icon_x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/pwa/maskable_icon_x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Grade",
+      "description": "Grade der Schweizer Armee lernen.",
+      "url": "/ranks"
+    }
+  ],
+  "theme_color": "#4B6C42",
+  "background_color": "#0F161E",
+  "start_url": "https://abmarsch.ch/",
+  "display": "standalone"
 }
