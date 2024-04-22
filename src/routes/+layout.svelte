@@ -26,7 +26,7 @@
 
 <footer>
   <div>
-    <p><a href="https://github.com/CediGasser/bode-figge">Code on GitHub</a></p>
+    <p><a href="https://github.com/CediGasser/abmarsch">Code on GitHub</a></p>
     <p>&copy; {new Date().getFullYear()} by Wm Gasser</p>
   </div>
   <select bind:value={$locale}>
