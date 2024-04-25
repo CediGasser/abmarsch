@@ -1,16 +1,16 @@
 <script lang="ts">
-  import { tweened } from 'svelte/motion';
-  import { expoOut } from 'svelte/easing';
-  import { send, receive } from '$lib/assets/Crossfade';
+  import { tweened } from 'svelte/motion'
+  import { expoOut } from 'svelte/easing'
+  import { send, receive } from '$lib/assets/Crossfade'
 
   import { startDate, endDate, daysTotal, daysPassed } from '$lib/stores/Dates'
   import { t } from '$lib/i18n'
-  
+
   import DateInput from '$lib/components/DateInput.svelte'
   import StatusCard from '$lib/components/StatusCard.svelte'
   import Seo from '$lib/components/Seo.svelte'
 
-  $: percentage = Math.min(Math.round($daysPassed / $daysTotal * 100), 100)
+  $: percentage = Math.min(Math.round(($daysPassed / $daysTotal) * 100), 100)
 
   // 0 = Sunday, 1 = Monday, ...
   let weekDay = new Date().getDay() - 1 < 0 ? 6 : new Date().getDay() - 1
@@ -18,15 +18,18 @@
   let weekDayTweened = tweened(0, {
     delay: 3600,
     duration: 1000,
-    easing: expoOut
+    easing: expoOut,
   })
 
   $: weekDayTweened.set(weekDay)
 </script>
 
-<Seo title={$t('seo.title-home')}
+<Seo
+  title={$t('seo.title-home')}
   description={$t('seo.description-home')}
-  keywords={$t('seo.keywords-home')} />
+  keywords={$t('seo.keywords-home')}
+  canonical="https://abmarsch.ch"
+/>
 
 <main>
   <header>
@@ -34,38 +37,58 @@
   </header>
   <div class="kpi-grid">
     <div class="card date-selection">
-        <label for="startDate"><h2>{$t('home.start')}</h2></label> <DateInput id="startDate" bind:value={$startDate} />
-        <label for="endDate"><h2>{$t('home.end')}</h2></label> <DateInput id="endDate" bind:value={$endDate} />
+      <label for="startDate"><h2>{$t('home.start')}</h2></label>
+      <DateInput id="startDate" bind:value={$startDate} />
+      <label for="endDate"><h2>{$t('home.end')}</h2></label>
+      <DateInput id="endDate" bind:value={$endDate} />
     </div>
     <div class="week">
-      <StatusCard 
+      <StatusCard
         title={$t('home.week')}
-        value={Math.max(0, Math.min(Math.ceil($daysPassed / 7), Math.ceil($daysTotal / 7)))} 
-        text={$t('home.week-text', { weeks: Math.max(0, Math.min(Math.ceil($daysTotal / 7), Math.ceil($daysTotal / 7))).toString() })} />
+        value={Math.max(
+          0,
+          Math.min(Math.ceil($daysPassed / 7), Math.ceil($daysTotal / 7))
+        )}
+        text={$t('home.week-text', {
+          weeks: Math.max(
+            0,
+            Math.min(Math.ceil($daysTotal / 7), Math.ceil($daysTotal / 7))
+          ).toString(),
+        })}
+      />
     </div>
     <div class="progress">
-      <StatusCard 
+      <StatusCard
         title={$t('home.progress')}
-        value={Math.max(0, percentage)} 
+        value={Math.max(0, percentage)}
         unit="%"
-        text={percentage < 100 ? $t('home.progress-messages')[Math.max(0, Math.floor(percentage / 25))] : $t('home.progress-done')}
-        delay={800} />
+        text={percentage < 100
+          ? $t('home.progress-messages')[
+              Math.max(0, Math.floor(percentage / 25))
+            ]
+          : $t('home.progress-done')}
+        delay={800}
+      />
     </div>
     <div class="days-passed">
-      <StatusCard 
-        title="{$daysPassed >= 0 ? $t('home.already-done') : $t('home.until-start')}" 
-        value={Math.abs(Math.min($daysTotal, $daysPassed))} 
+      <StatusCard
+        title={$daysPassed >= 0
+          ? $t('home.already-done')
+          : $t('home.until-start')}
+        value={Math.abs(Math.min($daysTotal, $daysPassed))}
         unit={$t('home.days')}
-        delay={1600} 
-        text={$t('home.already-done-text')} />
+        delay={1600}
+        text={$t('home.already-done-text')}
+      />
     </div>
 
     <div class="total-days">
-      <StatusCard 
-        title={$t('home.total')} 
-        value={$daysTotal} 
+      <StatusCard
+        title={$t('home.total')}
+        value={$daysTotal}
         text={$t('home.total-message')}
-        delay={2400} />
+        delay={2400}
+      />
     </div>
     <div class="card soon-weekend">
       <h2>{$t('home.soon-weekend')}</h2>
@@ -82,14 +105,23 @@
       <div class="card link-card">
         <div class="link-card-left">
           <h2>{$t('home.learn-by-heart')}</h2>
-          <div
-            out:send|global={{ key: 'a' }} 
-            in:receive|global={{ key: 'a' }}>
+          <div out:send|global={{ key: 'a' }} in:receive|global={{ key: 'a' }}>
             <h1>{$t('ranks.title')}</h1>
           </div>
         </div>
         <div class="link-card-right">
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-right" width="64" height="64" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-arrow-right"
+            width="64"
+            height="64"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
             <path d="M5 12l14 0"></path>
             <path d="M13 18l6 -6"></path>
@@ -129,7 +161,7 @@
   span.active-week-day {
     color: var(--c-body);
   }
-  
+
   .kpi-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
