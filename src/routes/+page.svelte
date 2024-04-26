@@ -1,7 +1,6 @@
 <script lang="ts">
   import { tweened } from 'svelte/motion'
   import { expoOut } from 'svelte/easing'
-  import { send, receive } from '$lib/assets/Crossfade'
 
   import { startDate, endDate, daysTotal, daysPassed } from '$lib/stores/Dates'
   import { t } from '$lib/i18n'
@@ -105,7 +104,7 @@
       <div class="card link-card">
         <div class="link-card-left">
           <h2>{$t('home.learn-by-heart')}</h2>
-          <div out:send|global={{ key: 'a' }} in:receive|global={{ key: 'a' }}>
+          <div>
             <h1>{$t('ranks.title')}</h1>
           </div>
         </div>

@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { send, receive } from '$lib/assets/Crossfade'
   import { t } from '$lib/i18n'
 
   import RankCard from '$lib/components/RankCard.svelte'
@@ -165,7 +164,7 @@
         <path d="M5 12l6 -6"></path>
       </svg>
     </a>
-    <div out:send|global={{ key: 'a' }} in:receive|global={{ key: 'a' }}>
+    <div>
       <h1>{$t('ranks.title')}</h1>
     </div>
   </header>

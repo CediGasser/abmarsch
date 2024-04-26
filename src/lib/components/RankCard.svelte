@@ -10,8 +10,19 @@
   }
 </script>
 
-<div role="button" tabindex="0" class="rank-card" on:click={handleClick} on:keyup={handleClick} class:flipped>
-  <img loading={lazyLoad || lazyLoad == undefined ? 'lazy' : 'eager'} {src} alt={name} />
+<div
+  role="button"
+  tabindex="0"
+  class="rank-card"
+  on:click={handleClick}
+  on:keyup={handleClick}
+  class:flipped
+>
+  <img
+    loading={lazyLoad || lazyLoad == undefined ? 'lazy' : 'eager'}
+    {src}
+    alt={name}
+  />
   <div class="result">
     <h2>{name}</h2>
   </div>
