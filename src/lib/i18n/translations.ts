@@ -36,8 +36,7 @@ const translations: Translations = {
       'Ci siamo quasi',
     ],
     'home.already-done': 'Già fatto',
-    'home.already-done-text':
-      'Qui sono contati tutti i giorni, compresi i fine settimana.',
+    'home.already-done-text': 'Qui sono contati tutti i giorni, compresi i fine settimana.',
     'home.until-start': "Fino all'inizio",
     'home.days': ' Giorni',
     'home.total': 'Totale',
@@ -119,8 +118,7 @@ const translations: Translations = {
       'Fascht gschafft!',
     ],
     'home.already-done': 'Scho verbii',
-    'home.already-done-text':
-      'Hie sind alli Täg mit iberächnet, au s Wucheend.',
+    'home.already-done-text': 'Hie sind alli Täg mit iberächnet, au s Wucheend.',
     'home.until-start': 'Bis zum Afang',
     'home.days': ' Täg',
     'home.total': 'Total',
@@ -202,8 +200,7 @@ const translations: Translations = {
       'On y est presque',
     ],
     'home.already-done': 'Déjà fait',
-    'home.already-done-text':
-      'Ici sont comptés tous les jours, y compris le week-end.',
+    'home.already-done-text': 'Ici sont comptés tous les jours, y compris le week-end.',
     'home.until-start': "Jusqu'au début",
     'home.days': ' Jours',
     'home.total': 'Total',

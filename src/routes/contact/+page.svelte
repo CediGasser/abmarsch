@@ -9,11 +9,7 @@
 
   <form method="POST">
     <label for="message">{$t('contact.message')}:</label>
-    <Textarea
-      placeholder={$t('contact.message-placeholder')}
-      id="message"
-      name="message"
-      required
+    <Textarea placeholder={$t('contact.message-placeholder')} id="message" name="message" required
     ></Textarea>
 
     <input type="submit" value={$t('contact.submit')} />

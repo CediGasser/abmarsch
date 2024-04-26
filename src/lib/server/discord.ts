@@ -1,9 +1,7 @@
 import { env } from '$env/dynamic/private'
 
 if (!env.DISCORD_WEBHOOK_URL) {
-  console.error(
-    'DISCORD_WEBHOOK_URL not set, messages will not be sent to Discord.'
-  )
+  console.error('DISCORD_WEBHOOK_URL not set, messages will not be sent to Discord.')
 }
 
 type DiscordWebhookData = {

@@ -44,14 +44,11 @@
     <div class="week">
       <StatusCard
         title={$t('home.week')}
-        value={Math.max(
-          0,
-          Math.min(Math.ceil($daysPassed / 7), Math.ceil($daysTotal / 7))
-        )}
+        value={Math.max(0, Math.min(Math.ceil($daysPassed / 7), Math.ceil($daysTotal / 7)))}
         text={$t('home.week-text', {
           weeks: Math.max(
             0,
-            Math.min(Math.ceil($daysTotal / 7), Math.ceil($daysTotal / 7))
+            Math.min(Math.ceil($daysTotal / 7), Math.ceil($daysTotal / 7)),
           ).toString(),
         })}
       />
@@ -62,18 +59,14 @@
         value={Math.max(0, percentage)}
         unit="%"
         text={percentage < 100
-          ? $t('home.progress-messages')[
-              Math.max(0, Math.floor(percentage / 25))
-            ]
+          ? $t('home.progress-messages')[Math.max(0, Math.floor(percentage / 25))]
           : $t('home.progress-done')}
         delay={800}
       />
     </div>
     <div class="days-passed">
       <StatusCard
-        title={$daysPassed >= 0
-          ? $t('home.already-done')
-          : $t('home.until-start')}
+        title={$daysPassed >= 0 ? $t('home.already-done') : $t('home.until-start')}
         value={Math.abs(Math.min($daysTotal, $daysPassed))}
         unit={$t('home.days')}
         delay={1600}

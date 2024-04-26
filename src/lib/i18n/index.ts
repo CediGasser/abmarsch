@@ -1,3 +1,3 @@
-import { locales, locale, t } from "./i18n";
+import { locales, locale, t } from './i18n'
 
-export { locales, locale, t };
+export { locales, locale, t }

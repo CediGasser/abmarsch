@@ -18,11 +18,7 @@
   on:keyup={handleClick}
   class:flipped
 >
-  <img
-    loading={lazyLoad || lazyLoad == undefined ? 'lazy' : 'eager'}
-    {src}
-    alt={name}
-  />
+  <img loading={lazyLoad || lazyLoad == undefined ? 'lazy' : 'eager'} {src} alt={name} />
   <div class="result">
     <h2>{name}</h2>
   </div>
