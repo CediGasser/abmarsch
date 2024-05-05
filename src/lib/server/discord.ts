@@ -18,7 +18,7 @@ type DiscordWebhookData = {
 }
 
 export const sendMessage = async (data: DiscordWebhookData) => {
-  const hookUrl = env.DISCORD_WEBHOOK_URL
+  const hookUrl = env.DISCORD_WEBHOOK_URL as string
 
   try {
     let res = await fetch(hookUrl, {
@@ -31,8 +31,7 @@ export const sendMessage = async (data: DiscordWebhookData) => {
 
     if (!res.ok) {
       let msg = `Failed to send message to Discord: (${res.status}) ${res.statusText}`
-      console.error(msg)
-      throw new Error(msg)
+      throw Error(msg)
     }
   } catch (err) {
     console.error(err)

@@ -2,15 +2,19 @@ import { error, redirect, type Actions } from '@sveltejs/kit'
 import { env } from '$env/dynamic/private'
 import { sendMessage } from '$lib/server/discord'
 
-const RATE_LIMIT_CAPACITY = parseFloat(env.FORM_RATE_LIMIT_CAPACITY) ?? 5
-const RATE_LIMIT_DURATION = parseFloat(env.FORM_RATE_LIMIT_DURATION) ?? 60
+const RATE_LIMIT_CAPACITY = parseFloat(env.FORM_RATE_LIMIT_CAPACITY || '5')
+const RATE_LIMIT_DURATION = parseFloat(env.FORM_RATE_LIMIT_DURATION || '60')
 
 const visitsByIp = new Map<string, number>()
 
 export const actions = {
   default: async ({ request, getClientAddress }) => {
     const message = (await request.formData()).get('message') as string
-    const ipAddress = getClientAddress()
+    const ipAddress = request.headers.get('X-Real-IP') || getClientAddress()
+
+    if (message.trim().length === 0) {
+      throw redirect(301, '/thx')
+    }
 
     visitsByIp.set(ipAddress, (visitsByIp.get(ipAddress) || 0) + 1)
 
@@ -29,7 +33,7 @@ export const actions = {
           content: message,
         })
       } catch {
-        error(500, 'Failed to send message')
+        throw error(500, 'Failed to send message')
       }
     }
 
