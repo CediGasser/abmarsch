@@ -9,7 +9,7 @@
   import StatusCard from '$lib/components/StatusCard.svelte'
   import Seo from '$lib/components/Seo.svelte'
 
-  $: percentage = Math.min(Math.round(($daysPassed / $daysTotal) * 100), 100)
+  $: percentage = Math.min(Math.floor(($daysPassed / $daysTotal) * 100), 100)
 
   // 0 = Sunday, 1 = Monday, ...
   let weekDay = new Date().getDay() - 1 < 0 ? 6 : new Date().getDay() - 1
