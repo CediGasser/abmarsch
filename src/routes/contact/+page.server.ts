@@ -13,7 +13,7 @@ export const actions = {
     const ipAddress = request.headers.get('X-Real-IP') || getClientAddress()
 
     if (message.trim().length === 0) {
-      throw redirect(301, '/thx')
+      redirect(301, '/thx')
     }
 
     visitsByIp.set(ipAddress, (visitsByIp.get(ipAddress) || 0) + 1)
@@ -33,7 +33,7 @@ export const actions = {
           content: message,
         })
       } catch {
-        throw error(500, 'Failed to send message')
+        error(500, 'Failed to send message')
       }
     }
 
@@ -54,6 +54,6 @@ export const actions = {
       else visitsByIp.set(ipAddress, (visitsByIp.get(ipAddress) || 0) - 1)
     }, RATE_LIMIT_DURATION * 1000)
 
-    throw redirect(301, '/thx')
+    redirect(301, '/thx')
   },
 } satisfies Actions
