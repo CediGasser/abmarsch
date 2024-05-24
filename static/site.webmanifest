@@ -35,6 +35,6 @@
   ],
   "theme_color": "#4B6C42",
   "background_color": "#0F161E",
-  "start_url": "https://abmarsch.ch/",
+  "start_url": "/",
   "display": "standalone"
 }
