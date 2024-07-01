@@ -3,8 +3,8 @@ import storedWritable from '@efstajas/svelte-stored-writable'
 import { z } from 'zod'
 import { browser } from '$app/environment'
 
-const DEFAULT_START_DATE = new Date('2024-01-15')
-const DEFAULT_END_DATE = new Date('2024-05-17')
+const DEFAULT_START_DATE = new Date('2024-07-01')
+const DEFAULT_END_DATE = new Date('2024-11-01')
 
 export const startDate = storedWritable('startDate', z.coerce.date(), DEFAULT_START_DATE, !browser)
 export const endDate = storedWritable('endDate', z.coerce.date(), DEFAULT_END_DATE, !browser)
