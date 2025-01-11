@@ -3,8 +3,8 @@ import storedWritable from '@efstajas/svelte-stored-writable'
 import { z } from 'zod'
 import { browser } from '$app/environment'
 
-const DEFAULT_START_DATE = new Date('2024-07-01')
-const DEFAULT_END_DATE = new Date('2024-11-01')
+const DEFAULT_START_DATE = new Date('2025-01-13')
+const DEFAULT_END_DATE = new Date('2025-05-16')
 
 export const startDate = storedWritable('startDate', z.coerce.date(), DEFAULT_START_DATE, !browser)
 export const endDate = storedWritable('endDate', z.coerce.date(), DEFAULT_END_DATE, !browser)
@@ -16,7 +16,11 @@ export const daysLeft = derived([endDate], ([$endDate]) => {
 
 export const daysPassed = derived([startDate], ([$startDate]) => {
   const diff = new Date().getTime() - $startDate.getTime()
-  return Math.ceil(diff / (1000 * 3600 * 24))
+  if (diff >= 0) {
+    return Math.ceil(diff / (1000 * 3600 * 24))
+  } else {
+    return Math.floor(diff / (1000 * 3600 * 24))
+  }
 })
 
 export const daysTotal = derived([startDate, endDate], ([$startDate, $endDate]) => {
