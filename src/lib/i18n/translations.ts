@@ -79,9 +79,6 @@ const translations: Translations = {
     'ranks.graddivisionaer': 'Divisionario (div)',
     'ranks.gradkorpskommandant': 'Comandante di corpo (cdt C)',
     'ranks.general': 'Generale',
-    'noiframe.title': 'RS Rechner - Quanti giorni ancora?',
-    'noiframe.realtitle': 'Vai sulla pagina giusta!',
-    'noiframe.start': 'Inizio',
   },
   de: {
     'general.link-privacy': 'Datenschutzerklärung',
@@ -148,7 +145,7 @@ const translations: Translations = {
     'ranks.hauptfeldweibel': 'Hauptfeldweibel (Hptfw)',
     'ranks.adjutant-unteroffizier': 'Adjutant-Unteroffizier (Adj Uof)',
     'ranks.stabsadjutant': 'Stabsadjutant (Stabsadj)',
-    'ranks.hauptadjutant': 'Haupadjutant (Hptadj)',
+    'ranks.hauptadjutant': 'Hauptadjutant (Hptadj)',
     'ranks.chefadjutant': 'Chefadjutant (Chefadj)',
     'ranks.leutnant': 'Leutnant (Lt)',
     'ranks.oberleutnant': 'Oberleutnant (Oblt)',
@@ -161,9 +158,6 @@ const translations: Translations = {
     'ranks.graddivisionaer': 'Divisionär (Div)',
     'ranks.gradkorpskommandant': 'Korpskommandant (KKdt)',
     'ranks.general': 'General',
-    'noiframe.title': 'RS Rechner - Wieviele Tage noch?',
-    'noiframe.realtitle': 'Gang liäber uf diä richtig Sitä!',
-    'noiframe.start': 'Start',
   },
   fr: {
     'general.link-privacy': 'Déclaration de confidentialité',
@@ -243,9 +237,6 @@ const translations: Translations = {
     'ranks.graddivisionaer': 'Divisionnaire (div)',
     'ranks.gradkorpskommandant': 'Commandant de corps (cdt C)',
     'ranks.general': 'Général',
-    'noiframe.title': 'RS Rechner - Combien de jours encore?',
-    'noiframe.realtitle': 'Va sur la bonne page!',
-    'noiframe.start': 'Début',
   },
 }
 
