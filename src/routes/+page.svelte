@@ -1,8 +1,5 @@
 <script lang="ts">
-  import { run } from 'svelte/legacy'
-  // TODO: Migration task run with effects
-
-  import { tweened } from 'svelte/motion'
+  import { Tween } from 'svelte/motion'
   import { expoOut } from 'svelte/easing'
 
   import { startDate, endDate, daysTotal, daysPassed } from '$lib/stores/Dates'
@@ -17,14 +14,13 @@
   // 0 = Sunday, 1 = Monday, ...
   let weekDay = new Date().getDay() - 1 < 0 ? 6 : new Date().getDay() - 1
 
-  let weekDayTweened = tweened(0, {
+  let weekDayTweened = new Tween(0, {
     delay: 3600,
     duration: 1000,
     easing: expoOut,
   })
-
-  run(() => {
-    weekDayTweened.set(weekDay)
+  $effect(() => {
+    weekDayTweened.target = weekDay
   })
 </script>
 
@@ -91,7 +87,7 @@
       <h2>{$t('home.soon-weekend')}</h2>
       <span class="week-day-list">
         {#each $t('home.soon-weekend-days-abbr') as day, i}
-          <span class:active-week-day={i <= $weekDayTweened}>{day}</span>
+          <span class:active-week-day={i <= weekDayTweened.current}>{day}</span>
         {/each}
       </span>
       <p>{$t('home.soon-weekend-messages')[weekDay]}</p>

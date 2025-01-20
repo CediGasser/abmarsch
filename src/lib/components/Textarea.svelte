@@ -1,12 +1,9 @@
-<!-- @migration-task Error while migrating Svelte code: $$props is used together with named props in a way that cannot be automatically migrated. -->
 <script lang="ts">
-  // TODO: Migration task, fix $$props
-  export let value = ''
-  export let placeholder = ''
-  export let rows = 4
+  import type { HTMLTextareaAttributes } from 'svelte/elements'
+  let { value = '', placeholder = '', rows = 4, ...rest }: HTMLTextareaAttributes = $props()
 </script>
 
-<textarea {...$$props} bind:value {placeholder} {rows} />
+<textarea {...rest} bind:value {placeholder} {rows}></textarea>
 
 <style>
   textarea {
