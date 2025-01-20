@@ -2,14 +2,15 @@
   import { Tween } from 'svelte/motion'
   import { expoOut } from 'svelte/easing'
 
-  import { startDate, endDate, daysTotal, daysPassed } from '$lib/stores/Dates'
+  import { getDates } from '$lib/stores/dates.svelte'
   import { t } from '$lib/i18n'
 
   import DateInput from '$lib/components/DateInput.svelte'
   import StatusCard from '$lib/components/StatusCard.svelte'
   import Seo from '$lib/components/Seo.svelte'
 
-  let percentage = $derived(Math.min(Math.floor(($daysPassed / $daysTotal) * 100), 100))
+  let dates = getDates()
+  let percentage = $derived(Math.min(Math.floor((dates.daysPassed / dates.daysTotal) * 100), 100))
 
   // 0 = Sunday, 1 = Monday, ...
   let weekDay = new Date().getDay() - 1 < 0 ? 6 : new Date().getDay() - 1
@@ -22,6 +23,8 @@
   $effect(() => {
     weekDayTweened.target = weekDay
   })
+
+  $inspect(dates)
 </script>
 
 <Seo
@@ -38,18 +41,21 @@
   <div class="kpi-grid">
     <div class="card date-selection">
       <label for="startDate"><h2>{$t('home.start')}</h2></label>
-      <DateInput id="startDate" bind:value={$startDate} />
+      <DateInput id="startDate" bind:value={dates.startDate} />
       <label for="endDate"><h2>{$t('home.end')}</h2></label>
-      <DateInput id="endDate" bind:value={$endDate} />
+      <DateInput id="endDate" bind:value={dates.endDate} />
     </div>
     <div class="week">
       <StatusCard
         title={$t('home.week')}
-        value={Math.max(0, Math.min(Math.ceil($daysPassed / 7), Math.ceil($daysTotal / 7)))}
+        value={Math.max(
+          0,
+          Math.min(Math.ceil(dates.daysPassed / 7), Math.ceil(dates.daysTotal / 7)),
+        )}
         text={$t('home.week-text', {
           weeks: Math.max(
             0,
-            Math.min(Math.ceil($daysTotal / 7), Math.ceil($daysTotal / 7)),
+            Math.min(Math.ceil(dates.daysTotal / 7), Math.ceil(dates.daysTotal / 7)),
           ).toString(),
         })}
       />
@@ -67,8 +73,8 @@
     </div>
     <div class="days-passed">
       <StatusCard
-        title={$daysPassed >= 0 ? $t('home.already-done') : $t('home.until-start')}
-        value={Math.abs(Math.min($daysTotal, $daysPassed))}
+        title={dates.daysPassed >= 0 ? $t('home.already-done') : $t('home.until-start')}
+        value={Math.abs(Math.min(dates.daysTotal, dates.daysPassed))}
         unit={$t('home.days')}
         delay={1600}
         text={$t('home.already-done-text')}
@@ -78,7 +84,7 @@
     <div class="total-days">
       <StatusCard
         title={$t('home.total')}
-        value={$daysTotal}
+        value={dates.daysTotal}
         text={$t('home.total-message')}
         delay={2400}
       />
