@@ -1,10 +1,21 @@
 <script lang="ts">
-  export let title: string
-  export let description: string | undefined = undefined
-  export let keywords: string | undefined = undefined
-  export let canonical: string | undefined = undefined
-  export let type: 'website' | 'article' | 'site' | 'book' | 'profile' = 'site'
-  export let image: string = '/social_preview.webp'
+  interface Props {
+    title: string;
+    description?: string | undefined;
+    keywords?: string | undefined;
+    canonical?: string | undefined;
+    type?: 'website' | 'article' | 'site' | 'book' | 'profile';
+    image?: string;
+  }
+
+  let {
+    title,
+    description = undefined,
+    keywords = undefined,
+    canonical = undefined,
+    type = 'site',
+    image = '/social_preview.webp'
+  }: Props = $props();
 </script>
 
 <svelte:head>

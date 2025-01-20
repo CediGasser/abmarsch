@@ -1,13 +1,20 @@
 <script lang="ts">
+  import { run } from 'svelte/legacy'
+  // TODO: Migration task run with effects
+
   import { tweened } from 'svelte/motion'
   import { expoInOut } from 'svelte/easing'
 
-  export let title = ''
-  export let value = 0
-  export let unit = ''
-  export let delay = 0
-  export let duration = 2000
-  export let text = ''
+  interface Props {
+    title?: string
+    value?: number
+    unit?: string
+    delay?: number
+    duration?: number
+    text?: string
+  }
+
+  let { title = '', value = 0, unit = '', delay = 0, duration = 2000, text = '' }: Props = $props()
 
   const progress = tweened(0, {
     delay,
@@ -15,7 +22,9 @@
     easing: expoInOut,
   })
 
-  $: progress.set(value)
+  run(() => {
+    progress.set(value)
+  })
 </script>
 
 <div class="card">

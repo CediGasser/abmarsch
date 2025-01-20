@@ -1,10 +1,15 @@
 <script lang="ts">
   import { onMount } from 'svelte'
+  // TODO: Migration task, fix input type
 
-  export let value: Date = new Date()
-  export let id: string | undefined = undefined
+  interface Props {
+    value?: Date
+    id?: string | undefined
+  }
 
-  let input: HTMLInputElement
+  let { value = $bindable(new Date()), id = undefined }: Props = $props()
+
+  let input: HTMLInputElement = $state()
 
   const dateChange = () => {
     value = new Date(input.valueAsNumber)
@@ -15,7 +20,7 @@
   })
 </script>
 
-<input {id} type="date" bind:this={input} on:change={dateChange} />
+<input {id} type="date" bind:this={input} onchange={dateChange} />
 
 <style>
   input {

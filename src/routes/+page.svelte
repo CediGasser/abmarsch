@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { run } from 'svelte/legacy'
+  // TODO: Migration task run with effects
+
   import { tweened } from 'svelte/motion'
   import { expoOut } from 'svelte/easing'
 
@@ -9,7 +12,7 @@
   import StatusCard from '$lib/components/StatusCard.svelte'
   import Seo from '$lib/components/Seo.svelte'
 
-  $: percentage = Math.min(Math.floor(($daysPassed / $daysTotal) * 100), 100)
+  let percentage = $derived(Math.min(Math.floor(($daysPassed / $daysTotal) * 100), 100))
 
   // 0 = Sunday, 1 = Monday, ...
   let weekDay = new Date().getDay() - 1 < 0 ? 6 : new Date().getDay() - 1
@@ -20,7 +23,9 @@
     easing: expoOut,
   })
 
-  $: weekDayTweened.set(weekDay)
+  run(() => {
+    weekDayTweened.set(weekDay)
+  })
 </script>
 
 <Seo

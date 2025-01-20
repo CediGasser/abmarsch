@@ -1,4 +1,6 @@
+<!-- @migration-task Error while migrating Svelte code: $$props is used together with named props in a way that cannot be automatically migrated. -->
 <script lang="ts">
+  // TODO: Migration task, fix $$props
   export let value = ''
   export let placeholder = ''
   export let rows = 4

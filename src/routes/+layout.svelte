@@ -4,12 +4,12 @@
 
   import { locales, locale, t } from '$lib/i18n'
 
-  export let data
+  let { data, children } = $props();
 
   locale.set(data.locale)
 </script>
 
-<slot />
+{@render children?.()}
 
 <footer>
   <div>

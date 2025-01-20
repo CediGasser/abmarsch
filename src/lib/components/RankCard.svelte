@@ -1,8 +1,17 @@
 <script lang="ts">
-  export let src = 'favicon-32x32.png'
-  export let name = 'Rekrut'
-  export let flipped = false
-  export let lazyLoad = true
+  interface Props {
+    src?: string;
+    name?: string;
+    flipped?: boolean;
+    lazyLoad?: boolean;
+  }
+
+  let {
+    src = 'favicon-32x32.png',
+    name = 'Rekrut',
+    flipped = $bindable(false),
+    lazyLoad = true
+  }: Props = $props();
 
   const handleClick = (e: any) => {
     if (e.key && e.key !== 'Enter') return
@@ -14,8 +23,8 @@
   role="button"
   tabindex="0"
   class="rank-card"
-  on:click={handleClick}
-  on:keyup={handleClick}
+  onclick={handleClick}
+  onkeyup={handleClick}
   class:flipped
 >
   <img loading={lazyLoad || lazyLoad == undefined ? 'lazy' : 'eager'} {src} alt={name} />
