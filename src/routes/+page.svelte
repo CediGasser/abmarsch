@@ -23,8 +23,6 @@
   $effect(() => {
     weekDayTweened.target = weekDay
   })
-
-  $inspect(dates)
 </script>
 
 <Seo

@@ -56,7 +56,6 @@ export class LocalStorage<T> {
   }
 
   set current(value) {
-    console.log('setting value')
     this.#value = value
   }
 }

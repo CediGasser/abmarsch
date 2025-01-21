@@ -20,13 +20,13 @@ export const actions = {
 
     if ((visitsByIp.get(ipAddress) || 0) > RATE_LIMIT_CAPACITY) {
       // silently ignore the request and log it
-      console.log('Rate limited', {
+      console.info('Rate limited', {
         ipAddress,
         message,
         visits: visitsByIp.get(ipAddress),
       })
     } else {
-      console.log('Contact form submitted', { ipAddress, message })
+      console.info('Contact form submitted', { ipAddress, message })
       try {
         sendMessage({
           username: 'abmarsch.ch Contact Form',
@@ -39,7 +39,7 @@ export const actions = {
 
     setTimeout(() => {
       if (visitsByIp.get(ipAddress) === RATE_LIMIT_CAPACITY) {
-        console.log('Rate limit reset', { ipAddress })
+        console.info('Rate limit reset', { ipAddress })
         try {
           sendMessage({
             username: 'abmarsch.ch Rate Limit Reset',
