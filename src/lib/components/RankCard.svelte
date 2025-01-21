@@ -1,17 +1,17 @@
 <script lang="ts">
   interface Props {
-    src?: string;
-    name?: string;
-    flipped?: boolean;
-    lazyLoad?: boolean;
+    src?: string
+    name?: string
+    flipped?: boolean
+    lazyLoad?: boolean
   }
 
   let {
     src = 'favicon-32x32.png',
     name = 'Rekrut',
     flipped = $bindable(false),
-    lazyLoad = true
-  }: Props = $props();
+    lazyLoad = true,
+  }: Props = $props()
 
   const handleClick = (e: any) => {
     if (e.key && e.key !== 'Enter') return
@@ -40,6 +40,7 @@
     cursor: pointer;
     position: relative;
     width: 100%;
+    max-width: 300px;
   }
 
   .rank-card img {

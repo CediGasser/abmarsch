@@ -3,8 +3,16 @@
 
   import RankCard from '$lib/components/RankCard.svelte'
   import Seo from '$lib/components/Seo.svelte'
+  import SwipeCardsContainer from '$lib/components/SwipeCardsContainer.svelte'
 
-  let ranks = [
+  type Rank = {
+    name: string
+    src: string
+    place: number
+    lazyLoad?: boolean
+  }
+
+  let ranks: Rank[] = [
     {
       name: 'ranks.rekrut',
       src: '/rank/rekrut.webp',
@@ -169,11 +177,11 @@
     </div>
   </header>
   <div class="ranks">
-    {#each ranks as { name, src, lazyLoad }}
-      <div>
+    <SwipeCardsContainer items={ranks}>
+      {#snippet cardSnippet({ name, src, lazyLoad })}
         <RankCard name={$t(name)} {src} {lazyLoad} />
-      </div>
-    {/each}
+      {/snippet}
+    </SwipeCardsContainer>
   </div>
 </main>
 
