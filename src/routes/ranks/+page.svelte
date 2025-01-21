@@ -144,7 +144,7 @@
 
 <main>
   <header>
-    <a href="/">
+    <a href="/" aria-label={$t('home.title')}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         aria-label={$t('home.title')}
