@@ -17,15 +17,12 @@
 
   const release = () => {
     if (pullDeltaX > pullXThreshold) {
-      console.log('swiped right')
       swipeReleaseDirection = 'right'
       setTimeout(() => onSwipe('right'), ANIMATION_DURATION)
     } else if (pullDeltaX < -pullXThreshold) {
-      console.log('swiped left')
       swipeReleaseDirection = 'left'
       setTimeout(() => onSwipe('left'), ANIMATION_DURATION)
     } else {
-      console.log('swiped middle')
       swipeReleaseDirection = 'middle'
     }
 
@@ -70,7 +67,6 @@
 
 <style>
   .swipe-container {
-    position: absolute;
     cursor: grab;
     touch-action: none;
     width: 100%;

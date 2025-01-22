@@ -21,6 +21,8 @@
     // remove card from stack
     ranks = ranks.filter((rank) => rank.place !== item.place)
 
+    console.log(`Swiped ${direction} on ${item.name}`)
+
     if (direction === 'left') {
       // Readd card somewhere in the stack
       readdCard(item)
@@ -66,13 +68,11 @@
       <h1>{$t('ranks.title')}</h1>
     </div>
   </header>
-  <div class="ranks">
-    <SwipeCardsContainer items={ranks} {onCardSwipe}>
-      {#snippet cardSnippet({ name, src, lazyLoad })}
-        <RankCard name={$t(name)} {src} {lazyLoad} />
-      {/snippet}
-    </SwipeCardsContainer>
-  </div>
+  <SwipeCardsContainer items={ranks} {onCardSwipe}>
+    {#snippet cardSnippet({ name, src, lazyLoad })}
+      <RankCard name={$t(name)} {src} {lazyLoad} />
+    {/snippet}
+  </SwipeCardsContainer>
 </main>
 
 <style>
@@ -82,13 +82,5 @@
     align-items: flex-start;
     justify-content: start;
     gap: var(--space-l);
-  }
-
-  .ranks {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
   }
 </style>

@@ -52,6 +52,7 @@
     background-color: var(--c-overlay1);
     border-radius: var(--radius);
     padding: var(--space-l);
+    border: 1px solid var(--c-border);
   }
 
   .rank-card.flipped {
@@ -72,6 +73,7 @@
     border-radius: var(--radius);
     backface-visibility: hidden;
     transform: rotateY(180deg);
+    border: 1px solid var(--c-border);
   }
 
   .rank-card .result h2 {
