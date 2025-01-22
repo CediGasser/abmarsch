@@ -4,6 +4,8 @@
   import RankCard from '$lib/components/RankCard.svelte'
   import Seo from '$lib/components/Seo.svelte'
   import SwipeCardsContainer from '$lib/components/SwipeCardsContainer.svelte'
+  import allRanks from './ranks.json'
+  import { shuffleArray } from '$lib/stores/utils'
 
   type Rank = {
     name: string
@@ -12,135 +14,23 @@
     lazyLoad?: boolean
   }
 
-  let ranks: Rank[] = [
-    {
-      name: 'ranks.rekrut',
-      src: '/rank/rekrut.webp',
-      place: 0,
-      lazyLoad: false,
-    },
-    {
-      name: 'ranks.soldat',
-      src: '/rank/soldat.webp',
-      place: 1,
-      lazyLoad: false,
-    },
-    {
-      name: 'ranks.gefreiter',
-      src: '/rank/gefreiter.webp ',
-      place: 2,
-    },
-    {
-      name: 'ranks.obergefreiter',
-      src: '/rank/obergefreiter.webp ',
-      place: 3,
-    },
-    {
-      name: 'ranks.korporal',
-      src: '/rank/korporal.webp',
-      place: 4,
-    },
-    {
-      name: 'ranks.wachtmeister',
-      src: '/rank/wachtmeister.webp',
-      place: 5,
-    },
-    {
-      name: 'ranks.oberwachtmeister',
-      src: '/rank/oberwachtmeister.webp',
-      place: 6,
-    },
-    {
-      name: 'ranks.feldweibel',
-      src: '/rank/feldweibel.webp',
-      place: 7,
-    },
-    {
-      name: 'ranks.fourier',
-      src: '/rank/fourier.webp ',
-      place: 8,
-    },
-    {
-      name: 'ranks.hauptfeldweibel',
-      src: '/rank/hauptfeldweibel.webp ',
-      place: 9,
-    },
-    {
-      name: 'ranks.adjutant-unteroffizier',
-      src: '/rank/adjutant-unteroffizier.webp',
-      place: 10,
-    },
-    {
-      name: 'ranks.stabsadjutant',
-      src: '/rank/stabsadjutant.webp ',
-      place: 11,
-    },
-    {
-      name: 'ranks.hauptadjutant',
-      src: '/rank/hauptadjutant.webp ',
-      place: 12,
-    },
-    {
-      name: 'ranks.chefadjutant',
-      src: '/rank/chefadjutant.webp',
-      place: 13,
-    },
-    {
-      name: 'ranks.leutnant',
-      src: '/rank/leutnant.webp',
-      place: 14,
-    },
-    {
-      name: 'ranks.oberleutnant',
-      src: '/rank/oberleutnant.webp',
-      place: 15,
-    },
-    {
-      name: 'ranks.hauptmann',
-      src: '/rank/hauptmann.webp ',
-      place: 16,
-    },
-    {
-      name: 'ranks.major',
-      src: '/rank/major.webp ',
-      place: 17,
-    },
-    {
-      name: 'ranks.oberstleutnant',
-      src: '/rank/oberstleutnant.webp',
-      place: 18,
-    },
-    {
-      name: 'ranks.oberst',
-      src: '/rank/oberst.webp',
-      place: 19,
-    },
-    {
-      name: 'ranks.fachoffizier',
-      src: '/rank/fachoffizier.webp',
-      place: 20,
-    },
-    {
-      name: 'ranks.brigadier',
-      src: '/rank/brigadier.webp ',
-      place: 21,
-    },
-    {
-      name: 'ranks.graddivisionaer',
-      src: '/rank/graddivisionaer.webp ',
-      place: 22,
-    },
-    {
-      name: 'ranks.gradkorpskommandant',
-      src: '/rank/korpskommandant.webp ',
-      place: 23,
-    },
-    {
-      name: 'ranks.general',
-      src: '/rank/general.webp ',
-      place: 24,
-    },
-  ]
+  allRanks.reverse()
+  let ranks = $state(shuffleArray(structuredClone(allRanks)))
+
+  const onCardSwipe = (item: Rank, direction: string) => {
+    // remove card from stack
+    ranks = ranks.filter((rank) => rank.place !== item.place)
+
+    if (direction === 'left') {
+      // Readd card somewhere in the stack
+      readdCard(item)
+    }
+  }
+
+  const readdCard = (item: Rank) => {
+    const randomIndex = Math.floor((Math.random() * ranks.length) / 2 + ranks.length / 2)
+    ranks.splice(randomIndex, 0, item)
+  }
 </script>
 
 <Seo
@@ -177,7 +67,7 @@
     </div>
   </header>
   <div class="ranks">
-    <SwipeCardsContainer items={ranks}>
+    <SwipeCardsContainer items={ranks} {onCardSwipe}>
       {#snippet cardSnippet({ name, src, lazyLoad })}
         <RankCard name={$t(name)} {src} {lazyLoad} />
       {/snippet}
@@ -200,10 +90,5 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
-  }
-
-  .ranks > div {
-    width: 70vw;
-    max-width: 300px;
   }
 </style>

@@ -49,7 +49,7 @@
     object-fit: cover;
     object-position: center;
     backface-visibility: hidden;
-    background-color: var(--c-overlay);
+    background-color: var(--c-overlay1);
     border-radius: var(--radius);
     padding: var(--space-l);
   }
@@ -68,7 +68,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: var(--c-overlay);
+    background: var(--c-overlay1);
     border-radius: var(--radius);
     backface-visibility: hidden;
     transform: rotateY(180deg);

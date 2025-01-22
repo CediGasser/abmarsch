@@ -4,7 +4,7 @@
 
   import { locales, locale, t } from '$lib/i18n'
 
-  let { data, children } = $props();
+  let { data, children } = $props()
 
   locale.set(data.locale)
 </script>
@@ -44,7 +44,7 @@
     align-items: center;
     gap: var(--space-2xl);
     padding: var(--space-l);
-    background-color: var(--c-overlay);
+    background-color: var(--c-overlay1);
     color: var(--c-body);
     font-size: 0.8rem;
     top: 100dvh;

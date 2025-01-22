@@ -65,7 +65,8 @@
   --c-grey8: hsl(var(--greyH), var(--greyS), var(--grey8L));
 
   --c-border: hsla(var(--greyH), var(--greyS), var(--grey8L), 0.1);
-  --c-overlay: hsla(var(--greyH), var(--greyS), var(--grey8L), 0.07);
+  --c-overlay1: hsl(124deg 4% 93%);
+  --c-overlay2: hsl(126deg 4% 87%);
   --c-background: white;
   --c-body: var(--c-grey8);
   --c-bodyDimmed: hsla(var(--greyH), var(--greyS), var(--grey8L), 0.5);
@@ -90,7 +91,8 @@
   :root {
     color-scheme: dark;
     --c-border: hsla(var(--greyH), var(--greyS), var(--grey1L), 0.1);
-    --c-overlay: hsla(var(--greyH), var(--greyS), var(--grey1L), 0.07);
+    --c-overlay1: hsl(103deg 14% 13%);
+    --c-overlay2: hsl(94deg 10% 18%);
     --c-background: var(--c-grey8);
     --c-body: var(--c-grey1);
     --c-bodyDimmed: hsla(var(--greyH), var(--greyS), var(--grey1L), 0.5);
@@ -111,7 +113,7 @@ a {
 }
 
 .card {
-  background-color: var(--c-overlay);
+  background-color: var(--c-overlay1);
   border-radius: var(--radius);
   padding: var(--space-l);
   width: 100%;
