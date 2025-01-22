@@ -21,8 +21,6 @@
     // remove card from stack
     ranks = ranks.filter((rank) => rank.place !== item.place)
 
-    console.log(`Swiped ${direction} on ${item.name}`)
-
     if (direction === 'left') {
       // Readd card somewhere in the stack
       readdCard(item)
@@ -30,7 +28,7 @@
   }
 
   const readdCard = (item: Rank) => {
-    const randomIndex = Math.floor((Math.random() * ranks.length) / 2 + ranks.length / 2)
+    const randomIndex = Math.ceil((Math.random() * ranks.length) / 2 + ranks.length / 2)
     ranks.splice(randomIndex, 0, item)
   }
 </script>

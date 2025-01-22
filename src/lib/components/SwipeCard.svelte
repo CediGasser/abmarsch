@@ -2,8 +2,9 @@
   interface Props {
     children?: Snippet
     onSwipe?: (direction: 'left' | 'right') => void
+    index: number
   }
-  let { children, onSwipe }: Props = $props()
+  let { children, onSwipe, index }: Props = $props()
 
   const ANIMATION_DURATION = 300
 
@@ -12,7 +13,7 @@
   let rotate = $derived(pullDeltaX / 10)
 
   let isSwiping = $state(false)
-  let pullXThreshold = 100
+  let pullXThreshold = 60
   let swipeReleaseDirection: '' | 'left' | 'right' | 'middle' = $state('')
 
   const release = () => {
@@ -26,9 +27,9 @@
       swipeReleaseDirection = 'middle'
     }
 
+    pullDeltaX = 0
     setTimeout(() => {
       swipeReleaseDirection = ''
-      pullDeltaX = 0
     }, ANIMATION_DURATION)
   }
 
@@ -50,8 +51,8 @@
 </script>
 
 <div
-  class="swipe-container"
-  style="transform: translateX({pullDeltaX}px) rotate({rotate}deg)"
+  class="swipe-container noselect"
+  style="transform: translateX({pullDeltaX / 2}px) rotate({rotate}deg); --index: {index};"
   class:to-left={swipeReleaseDirection === 'left'}
   class:to-right={swipeReleaseDirection === 'right'}
   class:middle={swipeReleaseDirection === 'middle'}
@@ -62,11 +63,15 @@
   onmouseup={onSwipeEnd}
   ontouchend={onSwipeEnd}
 >
-  {@render children?.()}
+  <div class="layered-container">
+    {@render children?.()}
+  </div>
 </div>
 
 <style>
   .swipe-container {
+    position: absolute;
+    z-index: calc(-1 * var(--index) + 25);
     cursor: grab;
     touch-action: none;
     width: 100%;
@@ -76,6 +81,17 @@
     align-items: center;
     transform-origin: 50% 100%;
     transform: translateX(0);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .layered-container {
+    transition:
+      rotate 0.3s,
+      transform 0.3s,
+      opacity 0.3s;
+    rotate: calc(sin(var(--index)) * 3deg);
+    transform: translateY(calc(var(--index) * -3px));
+    opacity: calc(1.2 - var(--index) * 0.2);
   }
 
   .to-left {

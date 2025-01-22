@@ -13,34 +13,37 @@
     lazyLoad = true,
   }: Props = $props()
 
-  const handleClick = (e: any) => {
-    if (e.key && e.key !== 'Enter') return
+  const handleClick = (e: MouseEvent | KeyboardEvent) => {
+    if (e instanceof KeyboardEvent && e.key && e.key !== 'Enter') return
     flipped = !flipped
   }
 </script>
 
-<div
-  role="button"
-  tabindex="0"
-  class="rank-card"
-  onclick={handleClick}
-  onkeyup={handleClick}
-  class:flipped
->
-  <img loading={lazyLoad || lazyLoad == undefined ? 'lazy' : 'eager'} {src} alt={name} />
+<button class="rank-card" onclick={handleClick} onkeyup={handleClick} class:flipped>
+  <img
+    loading={lazyLoad || lazyLoad == undefined ? 'lazy' : 'eager'}
+    {src}
+    alt={name}
+    draggable="false"
+  />
   <div class="result">
     <h2>{name}</h2>
   </div>
-</div>
+</button>
 
 <style>
   .rank-card {
-    transition: transform 0.5s;
+    transition: transform 0.3s;
     transform-style: preserve-3d;
     cursor: pointer;
     position: relative;
     width: 100%;
-    max-width: 300px;
+    min-width: 250px;
+    height: 100%;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
   }
 
   .rank-card img {
