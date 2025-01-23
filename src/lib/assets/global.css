@@ -73,6 +73,9 @@
   --c-fieldBorder: var(--c-grey2);
   --c-buttonBg: var(--c-grey2);
 
+  --c-positive: hsl(120deg 100% 50%);
+  --c-negative: hsl(0deg 100% 50%);
+
   /* Layer */
   --radius: 2rem;
   --fieldBorderWidth: 3px;
@@ -99,6 +102,9 @@
     --c-fieldBorder: var(--c-grey6);
     --c-buttonBg: var(--c-grey6);
     --c-accent: hsl(var(--accentH), var(--accentS), 90%);
+
+    --c-positive: hsl(120, 100%, 30%);
+    --c-negative: hsl(0deg 100% 30%);
   }
 }
 

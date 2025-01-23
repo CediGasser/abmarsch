@@ -52,7 +52,10 @@
 
 <div
   class="swipe-container noselect"
-  style="transform: translateX({pullDeltaX / 2}px) rotate({rotate}deg); --index: {index};"
+  style="transform: translateX({pullDeltaX /
+    2}px) rotate({rotate}deg); --index: {index}; --overlay-opacity: {Math.abs(
+    pullDeltaX / pullXThreshold / 2,
+  )};"
   class:to-left={swipeReleaseDirection === 'left'}
   class:to-right={swipeReleaseDirection === 'right'}
   class:middle={swipeReleaseDirection === 'middle'}
@@ -65,6 +68,39 @@
 >
   <div class="layered-container">
     {@render children?.()}
+  </div>
+  <div class="overlays">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      style="display: {pullDeltaX < 0 ? 'block' : 'none'}"
+      viewBox="0 0 24 24"
+      fill="none"
+      class="left-overlay"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      width="64"
+      height="64"
+      stroke-width="4"
+    >
+      <path d="M18 6l-12 12"></path>
+      <path d="M6 6l12 12"></path>
+    </svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      style="display: {pullDeltaX > 0 ? 'block' : 'none'}"
+      viewBox="0 0 24 24"
+      fill="none"
+      class="right-overlay"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      width="64"
+      height="64"
+      stroke-width="4"
+    >
+      <path d="M5 12l5 5l10 -10"></path>
+    </svg>
   </div>
 </div>
 
@@ -107,5 +143,34 @@
   .middle {
     transition: transform 0.3s;
     transform: translateX(0) !important;
+  }
+
+  .overlays {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+  }
+
+  .overlays svg {
+    position: absolute;
+    padding: 4rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    opacity: var(--overlay-opacity);
+  }
+
+  .left-overlay {
+    color: var(--c-negative);
+  }
+
+  .right-overlay {
+    color: var(--c-positive);
   }
 </style>

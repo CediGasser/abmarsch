@@ -64,6 +64,7 @@
     align-items: center;
     overflow: hidden;
   }
+
   .background {
     display: flex;
     justify-content: space-between;
@@ -71,8 +72,5 @@
     min-width: 300px;
     width: 100%;
     color: var(--c-overlay1);
-  }
-
-  .background path {
   }
 </style>
