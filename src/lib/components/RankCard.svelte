@@ -52,7 +52,7 @@
     object-fit: cover;
     object-position: center;
     backface-visibility: hidden;
-    background-color: var(--c-overlay1);
+    background-color: var(--c-overlay2);
     border-radius: var(--radius);
     padding: var(--space-l);
     border: 1px solid var(--c-border);
