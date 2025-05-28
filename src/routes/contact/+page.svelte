@@ -11,6 +11,14 @@
     <label for="message">{$t('contact.message')}:</label>
     <Textarea placeholder={$t('contact.message-placeholder')} id="message" name="message" required
     ></Textarea>
+    <input
+      type="text"
+      name="name"
+      placeholder="name"
+      style="display: none;"
+      aria-hidden="true"
+      autocomplete="off"
+    />
 
     <input type="submit" value={$t('contact.submit')} />
   </form>

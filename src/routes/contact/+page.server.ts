@@ -10,6 +10,20 @@ const visitsByIp = new Map<string, number>()
 export const actions = {
   default: async ({ request, getClientAddress }) => {
     const message = (await request.formData()).get('message') as string
+    const honeypotNameField = (await request.formData()).get('name') as string
+
+    if (honeypotNameField) {
+      // Honeypot field filled, likely a bot
+      console.warn('Honeypot triggered, ignoring request', { honeypotNameField })
+      sendMessage({
+        username: 'abmarsch.ch Honeypot Triggered',
+        content: `Honeypot field filled: ${honeypotNameField}`,
+      }).catch((err) => {
+        console.error('Failed to send honeypot trigger message', err)
+      })
+      redirect(301, '/thx')
+    }
+
     const ipAddress = request.headers.get('X-Real-IP') || getClientAddress()
 
     if (message.trim().length === 0) {
