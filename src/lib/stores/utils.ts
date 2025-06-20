@@ -6,3 +6,14 @@ export const shuffleArray = (array: any[]) => {
   }
   return newArray
 }
+
+export const scrollIntoView = (element: HTMLElement, options?: ScrollIntoViewOptions) => {
+  if (element) {
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'nearest',
+      ...options,
+    })
+  }
+}

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import type { Snippet } from 'svelte'
+
   interface Props {
     children?: Snippet
     onSwipe?: (direction: 'left' | 'right') => void
@@ -19,10 +21,10 @@
   const release = () => {
     if (pullDeltaX > pullXThreshold) {
       swipeReleaseDirection = 'right'
-      setTimeout(() => onSwipe('right'), ANIMATION_DURATION)
+      setTimeout(() => onSwipe?.('right'), ANIMATION_DURATION)
     } else if (pullDeltaX < -pullXThreshold) {
       swipeReleaseDirection = 'left'
-      setTimeout(() => onSwipe('left'), ANIMATION_DURATION)
+      setTimeout(() => onSwipe?.('left'), ANIMATION_DURATION)
     } else {
       swipeReleaseDirection = 'middle'
     }

@@ -132,6 +132,8 @@ const translations: Translations = {
       'Und das ganze noch ein mal...',
     ],
     'home.learn-by-heart': 'Uswändig lerne',
+    'ranks.ended.title': 'Fertig!',
+    'ranks.ended.restart': 'Grad nomal',
     'ranks.title': 'Grade',
     'ranks.rekrut': 'Rekrut (Rekr)',
     'ranks.soldat': 'Soldat (Sdt)',

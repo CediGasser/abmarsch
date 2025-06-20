@@ -2,8 +2,6 @@
   import type { Snippet } from 'svelte'
   import SwipeCard from './SwipeCard.svelte'
 
-  const ANIMATION_DURATION = 300
-
   interface Props {
     items: T[]
     cardSnippet: Snippet<[T]>
@@ -11,6 +9,12 @@
     onCardSwipe?: (item: T, direction: 'left' | 'right') => void
   }
   let { items, cardSnippet, onCardsEnd, onCardSwipe }: Props = $props()
+
+  $effect(() => {
+    if (items.length === 0 && onCardsEnd) {
+      onCardsEnd()
+    }
+  })
 </script>
 
 <div class="wrapper">
@@ -48,7 +52,7 @@
     </div>
   </div>
   {#each items as item, i (item.place)}
-    <SwipeCard index={i} onSwipe={(direction) => onCardSwipe(item, direction)}>
+    <SwipeCard index={i} onSwipe={(direction) => onCardSwipe?.(item, direction)}>
       {@render cardSnippet(item)}
     </SwipeCard>
   {/each}
