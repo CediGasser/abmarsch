@@ -30,7 +30,7 @@
     padding-inline: var(--textFrameX);
     padding-block: var(--textFrameY);
     font-size: 1.5rem;
-    background-color: var(--c-overlay);
+    background-color: var(--c-overlay2);
     border: var(--fieldBorderWidth);
     border-radius: var(--radius);
   }

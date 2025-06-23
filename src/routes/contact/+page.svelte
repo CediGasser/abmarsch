@@ -46,7 +46,7 @@
 
   input[type='submit'] {
     padding: var(--space-s);
-    background-color: var(--c-overlay);
+    background-color: var(--c-overlay1);
     color: var(--c-white);
     border: none;
     border-radius: var(--radius);

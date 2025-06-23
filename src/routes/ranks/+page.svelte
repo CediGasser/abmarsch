@@ -1,138 +1,94 @@
 <script lang="ts">
   import { t } from '$lib/i18n'
-
   import RankCard from '$lib/components/RankCard.svelte'
   import Seo from '$lib/components/Seo.svelte'
+  import SwipeCardsContainer from '$lib/components/SwipeCardsContainer.svelte'
+  import allRanks from './ranks.json'
+  import { scrollIntoView, shuffleArray } from '$lib/stores/utils'
+  import RetriesMeter from '$lib/components/RetriesMeter.svelte'
+  import { tick } from 'svelte'
 
-  let ranks = [
-    {
-      name: 'ranks.rekrut',
-      src: '/rank/rekrut.webp',
-      place: 0,
-      lazyLoad: false,
-    },
-    {
-      name: 'ranks.soldat',
-      src: '/rank/soldat.webp',
-      place: 1,
-      lazyLoad: false,
-    },
-    {
-      name: 'ranks.gefreiter',
-      src: '/rank/gefreiter.webp ',
-      place: 2,
-    },
-    {
-      name: 'ranks.obergefreiter',
-      src: '/rank/obergefreiter.webp ',
-      place: 3,
-    },
-    {
-      name: 'ranks.korporal',
-      src: '/rank/korporal.webp',
-      place: 4,
-    },
-    {
-      name: 'ranks.wachtmeister',
-      src: '/rank/wachtmeister.webp',
-      place: 5,
-    },
-    {
-      name: 'ranks.oberwachtmeister',
-      src: '/rank/oberwachtmeister.webp',
-      place: 6,
-    },
-    {
-      name: 'ranks.feldweibel',
-      src: '/rank/feldweibel.webp',
-      place: 7,
-    },
-    {
-      name: 'ranks.fourier',
-      src: '/rank/fourier.webp ',
-      place: 8,
-    },
-    {
-      name: 'ranks.hauptfeldweibel',
-      src: '/rank/hauptfeldweibel.webp ',
-      place: 9,
-    },
-    {
-      name: 'ranks.adjutant-unteroffizier',
-      src: '/rank/adjutant-unteroffizier.webp',
-      place: 10,
-    },
-    {
-      name: 'ranks.stabsadjutant',
-      src: '/rank/stabsadjutant.webp ',
-      place: 11,
-    },
-    {
-      name: 'ranks.hauptadjutant',
-      src: '/rank/hauptadjutant.webp ',
-      place: 12,
-    },
-    {
-      name: 'ranks.chefadjutant',
-      src: '/rank/chefadjutant.webp',
-      place: 13,
-    },
-    {
-      name: 'ranks.leutnant',
-      src: '/rank/leutnant.webp',
-      place: 14,
-    },
-    {
-      name: 'ranks.oberleutnant',
-      src: '/rank/oberleutnant.webp',
-      place: 15,
-    },
-    {
-      name: 'ranks.hauptmann',
-      src: '/rank/hauptmann.webp ',
-      place: 16,
-    },
-    {
-      name: 'ranks.major',
-      src: '/rank/major.webp ',
-      place: 17,
-    },
-    {
-      name: 'ranks.oberstleutnant',
-      src: '/rank/oberstleutnant.webp',
-      place: 18,
-    },
-    {
-      name: 'ranks.oberst',
-      src: '/rank/oberst.webp',
-      place: 19,
-    },
-    {
-      name: 'ranks.fachoffizier',
-      src: '/rank/fachoffizier.webp',
-      place: 20,
-    },
-    {
-      name: 'ranks.brigadier',
-      src: '/rank/brigadier.webp ',
-      place: 21,
-    },
-    {
-      name: 'ranks.graddivisionaer',
-      src: '/rank/graddivisionaer.webp ',
-      place: 22,
-    },
-    {
-      name: 'ranks.gradkorpskommandant',
-      src: '/rank/korpskommandant.webp ',
-      place: 23,
-    },
-    {
-      name: 'ranks.general',
-      src: '/rank/general.webp ',
-      place: 24,
-    },
-  ]
+  type Rank = {
+    name: string
+    src: string
+    place: number
+    lazyLoad?: boolean
+  }
+
+  let appState: 'playing' | 'ended' = $state('playing')
+  let ranks = $state<Rank[]>([])
+  let retries: Map<Rank, number> = $state(new Map())
+  let maxRetries = $derived(Math.max(...retries.values(), 0))
+
+  $inspect(ranks)
+
+  // Get the last state from localStorage or create new state
+  const storedGameState = localStorage.getItem('gameState')
+  if (storedGameState) {
+    try {
+      const gameState: { ranks: Rank[]; retries: [Rank, number][] } = JSON.parse(storedGameState)
+      if (gameState.ranks && Array.isArray(gameState.ranks)) {
+        ranks = gameState.ranks
+        retries = new Map(gameState.retries.map(([rank, count]) => [rank, count]))
+      } else {
+        ranks = shuffleArray(structuredClone(allRanks))
+        retries = new Map()
+      }
+    } catch (error) {
+      console.error('Failed to parse stored ranks:', error)
+    }
+  } else {
+    // Initialize ranks with a shuffled copy of allRanks
+    ranks = shuffleArray(structuredClone(allRanks))
+    retries = new Map()
+  }
+
+  const onCardSwipe = (item: Rank, direction: string) => {
+    // remove card from stack
+    ranks = ranks.filter((rank) => rank.place !== item.place)
+
+    if (direction === 'left') {
+      // Readd card somewhere in the stack
+      readdCard(item)
+
+      retries.set(item, (retries.get(item) || 0) + 1)
+    } else if (direction === 'right') {
+      // Correct answer, add 0 in case it was never left swiped
+      if (!retries.has(item)) {
+        retries.set(item, 0)
+      }
+    }
+  }
+
+  const readdCard = async (item: Rank) => {
+    const randomIndex = Math.ceil((Math.random() * ranks.length) / 2 + ranks.length / 2)
+    await tick() // Ensure the DOM is updated before re-adding the card
+    ranks.splice(randomIndex, 0, item)
+  }
+
+  const onCardsEnd = () => {
+    if (appState === 'playing') {
+      appState = 'ended'
+    }
+  }
+
+  const saveGameState = () => {
+    const gameState = {
+      ranks,
+      retries: Array.from(retries.entries()),
+    }
+    localStorage.setItem('gameState', JSON.stringify(gameState))
+  }
+
+  $effect(() => {
+    saveGameState()
+  })
+
+  const restartGame = () => {
+    appState = 'playing'
+    ranks = shuffleArray(structuredClone(allRanks))
+    retries = new Map()
+  }
 </script>
 
 <Seo
@@ -143,8 +99,8 @@
 />
 
 <main>
-  <header>
-    <a href="/">
+  <header use:scrollIntoView>
+    <a href="/" aria-label={$t('home.title')}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         aria-label={$t('home.title')}
@@ -168,13 +124,24 @@
       <h1>{$t('ranks.title')}</h1>
     </div>
   </header>
-  <div class="ranks">
-    {#each ranks as { name, src, lazyLoad }}
-      <div>
+  {#if appState === 'playing'}
+    <h2>{allRanks.length - ranks.length} / {allRanks.length}</h2>
+    <SwipeCardsContainer items={ranks} {onCardSwipe} {onCardsEnd}>
+      {#snippet cardSnippet({ name, src, lazyLoad })}
         <RankCard name={$t(name)} {src} {lazyLoad} />
+      {/snippet}
+    </SwipeCardsContainer>
+  {:else if appState === 'ended'}
+    <div class="ended">
+      <h2>{$t('ranks.ended.title')}</h2>
+      <button onclick={restartGame}>{$t('ranks.ended.restart')}</button>
+      <div class="stats">
+        {#each Array(...retries.entries()).sort((a, b) => b[1] - a[1]) as [rank, count]}
+          <RetriesMeter retries={count} {rank} {maxRetries} />
+        {/each}
       </div>
-    {/each}
-  </div>
+    </div>
+  {/if}
 </main>
 
 <style>
@@ -186,16 +153,14 @@
     gap: var(--space-l);
   }
 
-  .ranks {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
+  h2 {
+    width: 100%;
+    text-align: center;
   }
 
-  .ranks > div {
-    width: 70vw;
-    max-width: 300px;
+  .stats {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
   }
 </style>
