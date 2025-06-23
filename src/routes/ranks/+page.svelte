@@ -7,6 +7,7 @@
   import allRanks from './ranks.json'
   import { scrollIntoView, shuffleArray } from '$lib/stores/utils'
   import RetriesMeter from '$lib/components/RetriesMeter.svelte'
+  import { tick } from 'svelte'
 
   type Rank = {
     name: string
@@ -39,8 +40,9 @@
     }
   }
 
-  const readdCard = (item: Rank) => {
+  const readdCard = async (item: Rank) => {
     const randomIndex = Math.ceil((Math.random() * ranks.length) / 2 + ranks.length / 2)
+    await tick() // Ensure the DOM is updated before re-adding the card
     ranks.splice(randomIndex, 0, item)
   }
 
