@@ -67,6 +67,9 @@
   ontouchmove={onSwipeMove}
   onmouseup={onSwipeEnd}
   ontouchend={onSwipeEnd}
+  aria-roledescription="Swipe card"
+  role="button"
+  tabindex="0"
 >
   <div class="layered-container">
     {@render children?.()}
