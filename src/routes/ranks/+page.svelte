@@ -1,6 +1,5 @@
 <script lang="ts">
   import { t } from '$lib/i18n'
-
   import RankCard from '$lib/components/RankCard.svelte'
   import Seo from '$lib/components/Seo.svelte'
   import SwipeCardsContainer from '$lib/components/SwipeCardsContainer.svelte'
@@ -17,11 +16,40 @@
   }
 
   let appState: 'playing' | 'ended' = $state('playing')
-
-  let ranks = $state(shuffleArray(structuredClone(allRanks)))
-
+  let ranks = $state<Rank[]>([])
   let retries: Map<Rank, number> = $state(new Map())
   let maxRetries = $derived(Math.max(...retries.values(), 0))
+
+  $inspect(ranks)
+
+  // Get the last state from localStorage or create new state
+  const storedGameState = localStorage.getItem('gameState')
+  if (storedGameState) {
+    try {
+      const gameState: { ranks: Rank[]; retries: [Rank, number][] } = JSON.parse(storedGameState)
+      if (gameState.ranks && Array.isArray(gameState.ranks)) {
+        ranks = gameState.ranks
+        retries = new Map(gameState.retries.map(([rank, count]) => [rank, count]))
+      } else {
+        ranks = shuffleArray(structuredClone(allRanks))
+        retries = new Map()
+      }
+    } catch (error) {
+      console.error('Failed to parse stored ranks:', error)
+    }
+  } else {
+    // Initialize ranks with a shuffled copy of allRanks
+    ranks = shuffleArray(structuredClone(allRanks))
+    retries = new Map()
+  }
+
+  const saveGameState = () => {
+    const gameState = {
+      ranks,
+      retries: Array.from(retries.entries()),
+    }
+    localStorage.setItem('gameState', JSON.stringify(gameState))
+  }
 
   const onCardSwipe = (item: Rank, direction: string) => {
     // remove card from stack
@@ -38,6 +66,9 @@
         retries.set(item, 0)
       }
     }
+
+    // Save the game state to localStorage
+    saveGameState()
   }
 
   const readdCard = async (item: Rank) => {
@@ -56,6 +87,8 @@
     appState = 'playing'
     ranks = shuffleArray(structuredClone(allRanks))
     retries = new Map()
+
+    saveGameState()
   }
 </script>
 
