@@ -43,14 +43,6 @@
     retries = new Map()
   }
 
-  const saveGameState = () => {
-    const gameState = {
-      ranks,
-      retries: Array.from(retries.entries()),
-    }
-    localStorage.setItem('gameState', JSON.stringify(gameState))
-  }
-
   const onCardSwipe = (item: Rank, direction: string) => {
     // remove card from stack
     ranks = ranks.filter((rank) => rank.place !== item.place)
@@ -66,9 +58,6 @@
         retries.set(item, 0)
       }
     }
-
-    // Save the game state to localStorage
-    saveGameState()
   }
 
   const readdCard = async (item: Rank) => {
@@ -83,12 +72,22 @@
     }
   }
 
+  const saveGameState = () => {
+    const gameState = {
+      ranks,
+      retries: Array.from(retries.entries()),
+    }
+    localStorage.setItem('gameState', JSON.stringify(gameState))
+  }
+
+  $effect(() => {
+    saveGameState()
+  })
+
   const restartGame = () => {
     appState = 'playing'
     ranks = shuffleArray(structuredClone(allRanks))
     retries = new Map()
-
-    saveGameState()
   }
 </script>
 
@@ -126,6 +125,7 @@
     </div>
   </header>
   {#if appState === 'playing'}
+    <h2>{allRanks.length - ranks.length} / {allRanks.length}</h2>
     <SwipeCardsContainer items={ranks} {onCardSwipe} {onCardsEnd}>
       {#snippet cardSnippet({ name, src, lazyLoad })}
         <RankCard name={$t(name)} {src} {lazyLoad} />
@@ -151,6 +151,11 @@
     align-items: flex-start;
     justify-content: start;
     gap: var(--space-l);
+  }
+
+  h2 {
+    width: 100%;
+    text-align: center;
   }
 
   .stats {
