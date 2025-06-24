@@ -41,6 +41,11 @@
   --c-accent: hsl(var(--accentH), var(--accentS), var(--accentL));
   --c-accentContrasted: hsl(var(--accentH), var(--accentS), 95%);
 
+  --secondaryH: 0;
+  --secondaryS: 24%;
+  --secondaryL: 34%;
+  --c-secondary: hsl(var(--secondaryH), var(--secondaryS), var(--secondaryL));
+
   --greyH: var(--accentH);
   --greyS: 25%;
   --initialGreyLightness: 93%;
@@ -64,7 +69,7 @@
   --c-grey7: hsl(var(--greyH), var(--greyS), var(--grey7L));
   --c-grey8: hsl(var(--greyH), var(--greyS), var(--grey8L));
 
-  --c-border: hsla(var(--greyH), var(--greyS), var(--grey8L), 0.1);
+  --c-border: hsla(var(--greyH), var(--greyS), var(--grey1L), 0.1);
   --c-overlay1: hsl(124deg 4% 93%);
   --c-overlay2: hsl(126deg 4% 87%);
   --c-background: white;
@@ -73,11 +78,12 @@
   --c-fieldBorder: var(--c-grey2);
   --c-buttonBg: var(--c-grey2);
 
-  --c-positive: hsl(120deg 100% 50%);
-  --c-negative: hsl(0deg 100% 50%);
+  --c-positive: hsl(var(--accentH), var(--accentS), 50%);
+  --c-negative: hsl(var(--secondaryH), var(--secondaryS), 50%);
 
   /* Layer */
   --radius: 2rem;
+  --radius-sm: 0.8rem;
   --fieldBorderWidth: 3px;
 
   font-family: var(--fontFamily);
@@ -126,20 +132,20 @@ a {
   height: 100%;
 }
 
-.card h2 {
+.card > h2 {
   line-height: var(--globalLineHeight);
   font-size: var(--text-s);
   margin-bottom: var(--space-xs);
 }
 
-.card span {
+.card > span {
   display: block;
   margin-bottom: var(--space-l);
   font-size: var(--text-xl);
   color: var(--c-accent);
 }
 
-.card p {
+.card > p {
   font-size: var(--text-s);
   line-height: var(--globalLineHeight);
 }

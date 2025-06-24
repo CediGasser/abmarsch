@@ -4,9 +4,10 @@
   import Seo from '$lib/components/Seo.svelte'
   import SwipeCardsContainer from '$lib/components/SwipeCardsContainer.svelte'
   import allRanks from './ranks.json'
-  import { scrollIntoView, shuffleArray } from '$lib/stores/utils'
+  import { shuffleArray } from '$lib/stores/utils'
   import RetriesMeter from '$lib/components/RetriesMeter.svelte'
   import { tick } from 'svelte'
+  import Divider from '$lib/components/Divider.svelte'
 
   type Rank = {
     name: string
@@ -19,6 +20,7 @@
   let ranks = $state<Rank[]>([])
   let retries: Map<Rank, number> = $state(new Map())
   let maxRetries = $derived(Math.max(...retries.values(), 0))
+  let firstTryRightCount = $derived(Array.from(retries.values()).filter((v) => v <= 0).length)
 
   $inspect(ranks)
 
@@ -30,6 +32,11 @@
       if (gameState.ranks && Array.isArray(gameState.ranks)) {
         ranks = gameState.ranks
         retries = new Map(gameState.retries.map(([rank, count]) => [rank, count]))
+
+        // If the ranks are empty, set state to 'ended'
+        if (ranks.length === 0) {
+          appState = 'ended'
+        }
       } else {
         ranks = shuffleArray(structuredClone(allRanks))
         retries = new Map()
@@ -56,6 +63,11 @@
       // Correct answer, add 0 in case it was never left swiped
       if (!retries.has(item)) {
         retries.set(item, 0)
+      }
+
+      // If there are no more cards left, end the game
+      if (ranks.length === 0) {
+        onCardsEnd()
       }
     }
   }
@@ -99,68 +111,125 @@
 />
 
 <main>
-  <header use:scrollIntoView>
-    <a href="/" aria-label={$t('home.title')}>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        aria-label={$t('home.title')}
-        class="icon icon-tabler icon-tabler-arrow-left"
-        width="48"
-        height="48"
-        viewBox="0 0 24 24"
-        stroke-width="2"
-        stroke="currentColor"
-        fill="none"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <path d="M5 12l14 0"></path>
-        <path d="M5 12l6 6"></path>
-        <path d="M5 12l6 -6"></path>
-      </svg>
-    </a>
-    <div>
-      <h1>{$t('ranks.title')}</h1>
-    </div>
-  </header>
   {#if appState === 'playing'}
-    <h2>{allRanks.length - ranks.length} / {allRanks.length}</h2>
-    <SwipeCardsContainer items={ranks} {onCardSwipe} {onCardsEnd}>
+    <span class="ranks-count">{allRanks.length - ranks.length} / {allRanks.length}</span>
+    <SwipeCardsContainer items={ranks} {onCardSwipe}>
       {#snippet cardSnippet({ name, src, lazyLoad })}
         <RankCard name={$t(name)} {src} {lazyLoad} />
       {/snippet}
     </SwipeCardsContainer>
   {:else if appState === 'ended'}
-    <div class="ended">
-      <h2>{$t('ranks.ended.title')}</h2>
-      <button onclick={restartGame}>{$t('ranks.ended.restart')}</button>
-      <div class="stats">
-        {#each Array(...retries.entries()).sort((a, b) => b[1] - a[1]) as [rank, count]}
-          <RetriesMeter retries={count} {rank} {maxRetries} />
-        {/each}
-      </div>
+    <div class="summary">
+      {#if firstTryRightCount >= allRanks.length}
+        <h1 class="ef">{$t('ranks.ended.ef')}</h1>
+      {:else}
+        <h1 class="nef">{$t('ranks.ended.nef')}</h1>
+      {/if}
+      <p>
+        {$t('ranks.ended.text', {
+          count: firstTryRightCount.toString(),
+          total: allRanks.length.toString(),
+        })}
+      </p>
     </div>
+    {#if firstTryRightCount < allRanks.length}
+      <div class="card stats">
+        <h2>{$t('ranks.ended.evaluation')}</h2>
+        <ol>
+          {#each Array(...retries.entries())
+            .filter((a) => a[1] >= 1)
+            .sort((a, b) => b[1] - a[1]) as [rank, count]}
+            <li>
+              <RetriesMeter retries={count} {rank} {maxRetries} />
+            </li>
+          {/each}
+        </ol>
+        <Divider text={$t('ranks.ended.first-try-right')} />
+        <ul>
+          {#each Array(...retries.entries()).filter((a) => a[1] <= 0) as [rank, count]}
+            <li>
+              <RetriesMeter retries={count} {rank} {maxRetries} />
+            </li>
+          {/each}
+        </ul>
+      </div>
+    {/if}
+    <button onclick={restartGame}>{$t('ranks.ended.restart')}</button>
   {/if}
 </main>
 
 <style>
-  header {
+  button {
+    width: 100%;
+    padding: var(--space-m);
+    font-size: 1.25rem;
+    background-color: var(--c-accent);
+    color: var(--c-accentContrasted);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    border: none;
+  }
+
+  main {
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: start;
+    flex-direction: column;
     gap: var(--space-l);
   }
 
-  h2 {
-    width: 100%;
+  span.ranks-count {
+    font-size: var(--text-xl);
     text-align: center;
+    margin-top: var(--space-l);
+    font-weight: bold;
+  }
+
+  .summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-l);
+  }
+
+  .summary h1.nef {
+    color: var(--c-secondary);
+  }
+
+  .summary h1.ef {
+    color: var(--c-accent);
+  }
+
+  .summary p {
+    font-size: 1.25rem;
+    text-align: center;
+    max-width: 600px;
   }
 
   .stats {
     display: flex;
     flex-direction: column;
     gap: var(--space-m);
+    height: 50vh;
+    overflow: scroll;
+    scrollbar-gutter: stable;
+  }
+
+  ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-m);
+    margin-bottom: var(--space-l);
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(2rem, 1fr));
+    gap: var(--space-m);
+
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
 </style>

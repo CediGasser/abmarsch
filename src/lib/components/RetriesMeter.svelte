@@ -9,28 +9,23 @@
   let { retries, rank, maxRetries }: Props = $props()
 </script>
 
-<div class="wrapper">
-  <img src={rank.src} alt={$t(rank.name)} />
-
-  <span>{$t(rank.name)}</span>
-
-  <div class="retries">
-    <span class:has-retries={retries > 0}>
-      {retries}
-    </span>
-    <meter
-      value={retries}
-      min="0"
-      max={maxRetries}
-      low="0"
-      high={maxRetries / 2}
-      optimum={maxRetries / 4}
-      aria-label={rank.name + ' ' + $t('retries-meter.label') + ' ' + retries}
-    >
-      {retries}
-    </meter>
+{#if retries === 0}
+  <div class="no-retries">
+    <img src={rank.src} alt={$t(rank.name)} />
   </div>
-</div>
+{:else}
+  <div class="wrapper">
+    <img src={rank.src} alt={$t(rank.name)} />
+
+    <span>{$t(rank.name)}</span>
+
+    <span class="retries">
+      {$t('ranks.ended.retries', {
+        retries: (retries + 1).toString(),
+      })}
+    </span>
+  </div>
+{/if}
 
 <style>
   .wrapper {
@@ -41,10 +36,9 @@
     grid-template-rows: 1fr 1fr;
   }
 
-  meter {
-    width: 100%;
-    height: 1.5rem;
-    flex-grow: 1;
+  .no-retries {
+    width: fit-content;
+    height: 100%;
   }
 
   img {
@@ -55,15 +49,11 @@
   }
 
   .retries {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--c-positive);
-  }
-
-  .has-retries {
-    color: var(--c-negative);
+    color: var(--c-accentContrasted);
+    background-color: var(--c-secondary);
+    border-radius: var(--radius-sm);
+    padding-inline: var(--space-m);
+    padding-block: 0.15rem;
+    width: fit-content;
   }
 </style>

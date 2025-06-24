@@ -139,6 +139,12 @@
     justify-content: space-between;
   }
 
+  .link-card h2 {
+    line-height: var(--globalLineHeight);
+    font-size: var(--text-s);
+    margin-bottom: var(--space-xs);
+  }
+
   .link-card-right {
     padding-inline: var(--space-xl);
   }

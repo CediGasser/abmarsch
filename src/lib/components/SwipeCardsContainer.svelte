@@ -5,16 +5,9 @@
   interface Props {
     items: T[]
     cardSnippet: Snippet<[T]>
-    onCardsEnd?: () => void
     onCardSwipe?: (item: T, direction: 'left' | 'right') => void
   }
-  let { items, cardSnippet, onCardsEnd, onCardSwipe }: Props = $props()
-
-  $effect(() => {
-    if (items.length === 0 && onCardsEnd) {
-      onCardsEnd()
-    }
-  })
+  let { items, cardSnippet, onCardSwipe }: Props = $props()
 </script>
 
 <div class="wrapper">
