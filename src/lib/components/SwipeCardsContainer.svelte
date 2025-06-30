@@ -45,7 +45,7 @@
     </div>
   </div>
   {#each items as item, i (item.place)}
-    <SwipeCard index={i} onSwipe={(direction) => onCardSwipe?.(item, direction)}>
+    <SwipeCard onTop={i === 0} index={i} onSwipe={(direction) => onCardSwipe?.(item, direction)}>
       {@render cardSnippet(item)}
     </SwipeCard>
   {/each}

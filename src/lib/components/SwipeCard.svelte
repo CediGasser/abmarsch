@@ -5,8 +5,9 @@
     children?: Snippet
     onSwipe?: (direction: 'left' | 'right') => void
     index: number
+    onTop?: boolean
   }
-  let { children, onSwipe, index }: Props = $props()
+  let { children, onSwipe, index, onTop = false }: Props = $props()
 
   const ANIMATION_DURATION = 300
 
@@ -50,7 +51,25 @@
     isSwiping = false
     release()
   }
+
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (!onTop) return
+    if (e.key === 'Escape') {
+      release()
+    } else if (e.key === 'ArrowLeft') {
+      console.log('Key pressed:', e.key)
+      swipeReleaseDirection = 'left'
+      pullDeltaX = -pullXThreshold
+      setTimeout(() => onSwipe?.('left'), ANIMATION_DURATION)
+    } else if (e.key === 'ArrowRight') {
+      swipeReleaseDirection = 'right'
+      pullDeltaX = pullXThreshold
+      setTimeout(() => onSwipe?.('right'), ANIMATION_DURATION)
+    }
+  }
 </script>
+
+<svelte:document onkeydown={handleKeyDown} />
 
 <div
   class="swipe-container noselect"
