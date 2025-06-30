@@ -1,7 +1,7 @@
 import { LocalDateStorage } from './storage.svelte'
 
-const DEFAULT_START_DATE = new Date('2025-01-13')
-const DEFAULT_END_DATE = new Date('2025-05-16')
+const DEFAULT_START_DATE = new Date('2025-06-30')
+const DEFAULT_END_DATE = new Date('2025-10-31')
 
 class Dates {
   #startDate = new LocalDateStorage('startDate', DEFAULT_START_DATE)
