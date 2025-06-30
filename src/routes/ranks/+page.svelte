@@ -4,7 +4,7 @@
   import Seo from '$lib/components/Seo.svelte'
   import SwipeCardsContainer from '$lib/components/SwipeCardsContainer.svelte'
   import allRanks from './ranks.json'
-  import { shuffleArray } from '$lib/stores/utils'
+  import { shuffleArray, trackEvent } from '$lib/stores/utils'
   import RetriesMeter from '$lib/components/RetriesMeter.svelte'
   import { tick } from 'svelte'
   import Divider from '$lib/components/Divider.svelte'
@@ -59,6 +59,9 @@
       readdCard(item)
 
       retries.set(item, (retries.get(item) || 0) + 1)
+
+      // Analytics tracking
+      trackEvent('Rank swiped left', { rank: item.name })
     } else if (direction === 'right') {
       // Correct answer, add 0 in case it was never left swiped
       if (!retries.has(item)) {
@@ -81,6 +84,15 @@
   const onCardsEnd = () => {
     if (appState === 'playing') {
       appState = 'ended'
+
+      // Analytics tracking
+      const totalRetries = Array.from(retries.values()).reduce((acc, count) => acc + count, 0)
+
+      if (totalRetries === 0) {
+        trackEvent('Ranks completed perfectly')
+      } else {
+        trackEvent('Ranks completed with retries', { retries: totalRetries })
+      }
     }
   }
 
