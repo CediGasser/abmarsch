@@ -72,6 +72,9 @@
       if (ranks.length === 0) {
         onCardsEnd()
       }
+
+      // Analytics tracking
+      trackEvent('Rank swiped right', { rank: item.name })
     }
   }
 
