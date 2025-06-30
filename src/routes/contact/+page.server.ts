@@ -9,8 +9,9 @@ const visitsByIp = new Map<string, number>()
 
 export const actions = {
   default: async ({ request, getClientAddress }) => {
-    const message = (await request.formData()).get('message') as string
-    const honeypotNameField = (await request.formData()).get('name') as string
+    const formData = await request.formData()
+    const message = formData.get('message') as string
+    const honeypotNameField = formData.get('name') as string
 
     if (honeypotNameField) {
       // Honeypot field filled, likely a bot

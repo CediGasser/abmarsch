@@ -1,9 +1,5 @@
 import { env } from '$env/dynamic/private'
 
-if (!env.DISCORD_WEBHOOK_URL) {
-  console.error('DISCORD_WEBHOOK_URL not set, messages will not be sent to Discord.')
-}
-
 type DiscordWebhookData = {
   username: string
   content?: string
@@ -17,7 +13,7 @@ type DiscordWebhookData = {
   }[]
 }
 
-export const sendMessage = async (data: DiscordWebhookData) => {
+export let sendMessage = async (data: DiscordWebhookData) => {
   const hookUrl = env.DISCORD_WEBHOOK_URL as string
 
   try {
@@ -36,5 +32,15 @@ export const sendMessage = async (data: DiscordWebhookData) => {
   } catch (err) {
     console.error(err)
     throw err
+  }
+}
+
+if (!env.DISCORD_WEBHOOK_URL) {
+  console.error('DISCORD_WEBHOOK_URL not set, messages will not be sent to Discord.')
+
+  // Replace the sendMessage function with a no-op
+  sendMessage = async (data: DiscordWebhookData) => {
+    console.log('Discord message would have been sent, but DISCORD_WEBHOOK_URL is not set.')
+    console.log(data)
   }
 }
