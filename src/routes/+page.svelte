@@ -162,7 +162,7 @@
   }
 
   span.active-week-day {
-    color: var(--c-body);
+    color: var(--c-accent);
   }
 
   .kpi-grid {

@@ -78,8 +78,8 @@
   --c-fieldBorder: var(--c-grey2);
   --c-buttonBg: var(--c-grey2);
 
-  --c-positive: hsl(var(--accentH), var(--accentS), 50%);
-  --c-negative: hsl(var(--secondaryH), var(--secondaryS), 50%);
+  --c-positive: hsl(78, 34%, 52%);
+  --c-negative: hsl(6, 76%, 55%);
 
   /* Layer */
   --radius: 2rem;
@@ -107,10 +107,8 @@
     --c-bodyDimmed: hsla(var(--greyH), var(--greyS), var(--grey1L), 0.5);
     --c-fieldBorder: var(--c-grey6);
     --c-buttonBg: var(--c-grey6);
-    --c-accent: hsl(var(--accentH), var(--accentS), 90%);
 
-    --c-positive: hsl(120, 100%, 30%);
-    --c-negative: hsl(0deg 100% 30%);
+    --c-accent: hsl(var(--accentH), var(--accentS), 50%);
   }
 }
 
