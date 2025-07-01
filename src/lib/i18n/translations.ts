@@ -40,7 +40,9 @@ const translations: Translations = {
     'home.until-start': "Fino all'inizio",
     'home.days': ' Giorni',
     'home.total': 'Totale',
-    'home.total-message': 'Anche questo finisce un giorno',
+    'home.total-message': 'Mancano ancora {{daysLeft}} giorni',
+    'home.total-over': "Ce l'hai fatta!",
+    'home.total-not-yet': 'Non è ancora così lontano',
     'home.soon-weekend': 'Presto il fine settimana',
     'home.soon-weekend-days-abbr': ['Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa', 'Do'],
     'home.soon-weekend-messages': [
@@ -126,7 +128,9 @@ const translations: Translations = {
     'home.until-start': 'Bis zum Afang',
     'home.days': ' Täg',
     'home.total': 'Total',
-    'home.total-message': 'Isch au irgendwenn verbii...',
+    'home.total-message': 'Das sind no {{daysLeft}} Täg',
+    'home.total-over': 'Du hesch es gschafft!',
+    'home.total-not-yet': 'Es isch no nid so wiit',
     'home.soon-weekend': 'Glii is Wuchänänd?',
     'home.soon-weekend-days-abbr': ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
     'home.soon-weekend-messages': [
@@ -212,7 +216,9 @@ const translations: Translations = {
     'home.until-start': "Jusqu'au début",
     'home.days': ' Jours',
     'home.total': 'Total',
-    'home.total-message': 'Ça finit aussi un jour',
+    'home.total-message': 'Il reste encore {{daysLeft}} jours',
+    'home.total-over': "Tu l'as fait!",
+    'home.total-not-yet': 'Ce n’est pas encore si loin',
     'home.soon-weekend': 'Bientôt le week-end',
     'home.soon-weekend-days-abbr': ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di'],
     'home.soon-weekend-messages': [

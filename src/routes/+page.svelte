@@ -83,7 +83,13 @@
       <StatusCard
         title={$t('home.total')}
         value={dates.daysTotal}
-        text={$t('home.total-message')}
+        text={dates.daysLeft <= 0
+          ? $t('home.total-over')
+          : dates.daysLeft > dates.daysTotal
+            ? $t('home.total-not-yet')
+            : $t('home.total-message', {
+                daysLeft: dates.daysLeft.toString(),
+              })}
         delay={2400}
       />
     </div>
