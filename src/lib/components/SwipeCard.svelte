@@ -38,12 +38,12 @@
 
   const onSwipeStart = (e: TouchEvent | MouseEvent) => {
     isSwiping = true
-    startX = e instanceof TouchEvent ? e.touches[0].clientX : e.clientX
+    startX = 'touches' in e ? e.touches[0].clientX : e.clientX
   }
 
   const onSwipeMove = (e: TouchEvent | MouseEvent) => {
     if (!isSwiping) return
-    const x = e instanceof TouchEvent ? e.touches[0].clientX : e.clientX
+    const x = 'touches' in e ? e.touches[0].clientX : e.clientX
     pullDeltaX = x - startX
   }
 
