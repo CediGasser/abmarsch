@@ -15,7 +15,7 @@ export const actions = {
 
     if (honeypotNameField) {
       // Honeypot field filled, likely a bot
-      console.warn('Honeypot triggered, ignoring request', { honeypotNameField })
+      console.warn('Honeypot triggered, ignoring request', { honeypotNameField, message })
       sendMessage({
         username: 'abmarsch.ch Honeypot Triggered',
         content: `Honeypot field filled: ${honeypotNameField}`,
