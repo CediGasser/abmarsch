@@ -1,6 +1,6 @@
 import { error, redirect, type Actions } from '@sveltejs/kit'
 import { env } from '$env/dynamic/private'
-import { sendMessage } from '$lib/server/discord'
+import { sendMessage, sendLogMessage } from '$lib/server/discord'
 
 const RATE_LIMIT_CAPACITY = parseFloat(env.FORM_RATE_LIMIT_CAPACITY || '5')
 const RATE_LIMIT_DURATION = parseFloat(env.FORM_RATE_LIMIT_DURATION || '60')
@@ -13,19 +13,19 @@ export const actions = {
     const message = formData.get('message') as string
     const honeypotNameField = formData.get('name') as string
 
+    const ipAddress = request.headers.get('X-Real-IP') || getClientAddress()
+
     if (honeypotNameField) {
       // Honeypot field filled, likely a bot
       console.warn('Honeypot triggered, ignoring request', { honeypotNameField, message })
-      sendMessage({
+      sendLogMessage({
         username: 'abmarsch.ch Honeypot Triggered',
-        content: `Honeypot field filled: ${honeypotNameField}`,
+        content: `Honeypot field filled: ${honeypotNameField}\n\nIP Address: ${ipAddress}\n\nMessage content:\n${message}`,
       }).catch((err) => {
         console.error('Failed to send honeypot trigger message', err)
       })
       redirect(301, '/thx')
     }
-
-    const ipAddress = request.headers.get('X-Real-IP') || getClientAddress()
 
     if (message.trim().length === 0) {
       redirect(301, '/thx')
@@ -55,14 +55,12 @@ export const actions = {
     setTimeout(() => {
       if (visitsByIp.get(ipAddress) === RATE_LIMIT_CAPACITY) {
         console.info('Rate limit reset', { ipAddress })
-        try {
-          sendMessage({
-            username: 'abmarsch.ch Rate Limit Reset',
-            content: `${ipAddress} was rate limited and has been reset.`,
-          })
-        } catch {
+        sendLogMessage({
+          username: 'abmarsch.ch Rate Limit Reset',
+          content: `${ipAddress} was rate limited and has been reset.`,
+        }).catch(() => {
           console.error('Failed to send rate limit reset message')
-        }
+        })
       }
 
       if (visitsByIp.get(ipAddress) === 1) visitsByIp.delete(ipAddress)
