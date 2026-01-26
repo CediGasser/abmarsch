@@ -10,7 +10,6 @@
   import Seo from '$lib/components/Seo.svelte'
 
   let dates = getDates()
-  let percentage = $derived(Math.min(Math.floor((dates.daysPassed / dates.daysTotal) * 100), 100))
 
   // 0 = Sunday, 1 = Monday, ...
   let weekDay = new Date().getDay() - 1 < 0 ? 6 : new Date().getDay() - 1
@@ -23,6 +22,34 @@
   $effect(() => {
     weekDayTweened.target = weekDay
   })
+
+  let now = $state(new Date())
+
+  let percentage = $derived.by(() => {
+    let totalMs = dates.daysTotal * 24 * 60 * 60 * 1000
+    let passedMs = now.getTime() - dates.startDate.getTime()
+
+    return totalMs > 0 ? Math.min((passedMs / totalMs) * 100, 100) : 0
+  })
+
+  // Progress animation initial settings
+  let duration = $state(2000)
+  let delay = $state(800)
+  let round = $state(0)
+
+  // Constantly update "now" after progress animation is done
+  setTimeout(() => {
+    delay = 0
+    duration = 0
+    setInterval(() => {
+      now = new Date()
+    }, 10)
+  }, duration + delay)
+
+  const handleEasterEgg = () => {
+    if (round < 5) round = 5
+    else round = 0
+  }
 </script>
 
 <Seo
@@ -58,17 +85,19 @@
         })}
       />
     </div>
-    <div class="progress">
+    <button class="progress" onclick={handleEasterEgg} aria-label="Progress details">
       <StatusCard
         title={$t('home.progress')}
         value={Math.max(0, percentage)}
+        {round}
         unit="%"
         text={percentage < 100
           ? $t('home.progress-messages')[Math.max(0, Math.floor(percentage / 25))]
           : $t('home.progress-done')}
-        delay={800}
+        {delay}
+        {duration}
       />
-    </div>
+    </button>
     <div class="days-passed">
       <StatusCard
         title={dates.daysPassed >= 0 ? $t('home.already-done') : $t('home.until-start')}
@@ -137,6 +166,11 @@
 </main>
 
 <style>
+  button.progress {
+    all: unset;
+    cursor: pointer;
+  }
+
   .link-card {
     margin-block: var(--space-l);
     display: flex;

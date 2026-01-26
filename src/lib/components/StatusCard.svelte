@@ -9,15 +9,26 @@
     delay?: number
     duration?: number
     text?: string
+    round?: number
   }
 
-  let { title = '', value = 0, unit = '', delay = 0, duration = 2000, text = '' }: Props = $props()
+  let {
+    title = '',
+    value = 0,
+    unit = '',
+    delay = 0,
+    duration = 2000,
+    text = '',
+    round = 0,
+  }: Props = $props()
 
-  const progress = new Tween(0, {
-    delay,
-    duration,
-    easing: expoInOut,
-  })
+  const progress = $derived(
+    new Tween(0, {
+      delay,
+      duration,
+      easing: expoInOut,
+    }),
+  )
 
   $effect(() => {
     progress.target = value
@@ -26,6 +37,24 @@
 
 <div class="card">
   <h2>{title}</h2>
-  <span>{Math.round(progress.current)}{unit}</span>
+  <span>
+    <span class="progress">
+      {progress.current.toFixed(round).split('.')[0]}
+    </span>{#if round > 0}<span class="decimal-point">
+        .{progress.current.toFixed(round).split('.')[1]}
+      </span>
+    {/if}
+    {unit}
+  </span>
   <p>{text}</p>
 </div>
+
+<style>
+  .progress {
+    margin-right: 0;
+  }
+
+  .decimal-point {
+    font-size: 0.6em;
+  }
+</style>
