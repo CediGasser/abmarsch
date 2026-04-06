@@ -25,7 +25,10 @@
 
 <style>
   input {
-    display: inline;
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
     color: var(--c-body);
     padding-inline: var(--textFrameX);
     padding-block: var(--textFrameY);
