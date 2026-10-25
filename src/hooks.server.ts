@@ -1,6 +1,7 @@
-import { dev } from '$app/environment'
+import type { Handle } from '@sveltejs/kit/hooks'
+import { dev } from '$app/env'
 
-export const handle = async ({ event, resolve }) => {
+export const handle: Handle = async ({ event, resolve }) => {
   // redirect to canonical domain
   if (event.url.hostname !== 'abmarsch.ch' && !dev) {
     return new Response(null, {

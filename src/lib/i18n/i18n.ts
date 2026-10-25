@@ -1,6 +1,6 @@
 import { derived, writable } from 'svelte/store'
 import translations from './translations'
-import { browser } from '$app/environment'
+import { browser } from '$app/env'
 
 export const locales = Object.keys(translations)
 
@@ -8,6 +8,7 @@ function getLocale(): string {
   if (!browser) return 'de'
 
   const locale = localStorage.getItem('locale')
+
   if (locale) return locale
 
   for (const browserLocale of navigator.languages) {
@@ -47,6 +48,7 @@ function translate(locale: string, key: string, vars: { [key: string]: string })
   // Let's throw some errors if we're trying to use keys/locales that don't exist.
   // We could improve this by using Typescript and/or fallback values.
   if (!key) throw new Error('no key provided to $t()')
+
   if (!locale) throw new Error(`Error with finding locale`)
 
   // If the locale doesn't exist, throw an error.
@@ -62,6 +64,7 @@ function translate(locale: string, key: string, vars: { [key: string]: string })
   // Replace any passed in variables in the translation string.
   Object.keys(vars).map((k) => {
     const regex = new RegExp(`{{${k}}}`, 'g')
+
     if (Array.isArray(text)) text = text.map((t) => t.replace(regex, vars[k]))
     else text = text.replace(regex, vars[k]) ?? text
   })

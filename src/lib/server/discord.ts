@@ -1,4 +1,4 @@
-import { env } from '$env/dynamic/private'
+import { DISCORD_WEBHOOK_URL, DISCORD_WEBHOOK_LOGS_URL } from '$app/env/private'
 
 type DiscordWebhookData = {
   username: string
@@ -18,9 +18,9 @@ type WebhookType = 'contact' | 'logs'
 const getWebhookUrl = (type: WebhookType): string | undefined => {
   switch (type) {
     case 'contact':
-      return env.DISCORD_WEBHOOK_URL
+      return DISCORD_WEBHOOK_URL
     case 'logs':
-      return env.DISCORD_WEBHOOK_LOGS_URL || env.DISCORD_WEBHOOK_URL
+      return DISCORD_WEBHOOK_LOGS_URL || DISCORD_WEBHOOK_URL
   }
 }
 
@@ -61,11 +61,11 @@ const createWebhookSender = (type: WebhookType) => {
 export const sendMessage = createWebhookSender('contact')
 export const sendLogMessage = createWebhookSender('logs')
 
-if (!env.DISCORD_WEBHOOK_URL) {
+if (!DISCORD_WEBHOOK_URL) {
   console.error('DISCORD_WEBHOOK_URL not set, contact messages will not be sent to Discord.')
 }
 
-if (!env.DISCORD_WEBHOOK_LOGS_URL) {
+if (!DISCORD_WEBHOOK_LOGS_URL) {
   console.warn(
     'DISCORD_WEBHOOK_LOGS_URL not set, log messages will fall back to DISCORD_WEBHOOK_URL.',
   )

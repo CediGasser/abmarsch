@@ -1,5 +1,5 @@
 import type { LayoutServerLoad } from './$types'
-import { locales } from '$lib/i18n'
+import { locales } from '#lib/i18n/index.js'
 
 export const load: LayoutServerLoad = async ({ request, cookies, url }) => {
   // If there's a locale cookie, use that.

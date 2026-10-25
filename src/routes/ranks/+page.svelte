@@ -1,13 +1,13 @@
 <script lang="ts">
-  import { t } from '$lib/i18n'
-  import RankCard from '$lib/components/RankCard.svelte'
-  import Seo from '$lib/components/Seo.svelte'
-  import SwipeCardsContainer from '$lib/components/SwipeCardsContainer.svelte'
+  import { t } from '#lib/i18n/index.js'
+  import RankCard from '#lib/components/RankCard.svelte'
+  import Seo from '#lib/components/Seo.svelte'
+  import SwipeCardsContainer from '#lib/components/SwipeCardsContainer.svelte'
   import allRanks from './ranks.json'
-  import { shuffleArray, trackEvent } from '$lib/stores/utils'
-  import RetriesMeter from '$lib/components/RetriesMeter.svelte'
+  import { shuffleArray, trackEvent } from '#lib/stores/utils.js'
+  import RetriesMeter from '#lib/components/RetriesMeter.svelte'
   import { tick } from 'svelte'
-  import Divider from '$lib/components/Divider.svelte'
+  import Divider from '#lib/components/Divider.svelte'
 
   type Rank = {
     name: string

@@ -2,12 +2,12 @@
   import { Tween } from 'svelte/motion'
   import { expoOut } from 'svelte/easing'
 
-  import { getDates } from '$lib/stores/dates.svelte'
-  import { t } from '$lib/i18n'
+  import { getDates } from '#lib/stores/dates.svelte.js'
+  import { t } from '#lib/i18n/index.js'
 
-  import DateInput from '$lib/components/DateInput.svelte'
-  import StatusCard from '$lib/components/StatusCard.svelte'
-  import Seo from '$lib/components/Seo.svelte'
+  import DateInput from '#lib/components/DateInput.svelte'
+  import StatusCard from '#lib/components/StatusCard.svelte'
+  import Seo from '#lib/components/Seo.svelte'
   import { fade } from 'svelte/transition'
 
   let dates = getDates()

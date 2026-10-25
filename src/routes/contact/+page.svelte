@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Textarea from '$lib/components/Textarea.svelte'
-  import { t } from '$lib/i18n'
+  import Textarea from '#lib/components/Textarea.svelte'
+  import { t } from '#lib/i18n/index.js'
 </script>
 
 <main>

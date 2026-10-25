@@ -1,8 +1,8 @@
 <script lang="ts">
-  import '$lib/assets/reset.css'
-  import '$lib/assets/global.css'
+  import '#lib/assets/reset.css'
+  import '#lib/assets/global.css'
 
-  import { locales, locale, t } from '$lib/i18n'
+  import { locales, locale, t } from '#lib/i18n/index.js'
 
   let { data, children } = $props()
 

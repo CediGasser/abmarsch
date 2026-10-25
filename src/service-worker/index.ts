@@ -1,18 +1,20 @@
-/// <reference types="@sveltejs/kit" />
-/// <reference no-default-lib="true"/>
-/// <reference lib="esnext" />
-/// <reference lib="webworker" />
-
-import { build, files, version } from '$service-worker'
-
-const sw = self as unknown as ServiceWorkerGlobalScope
+import { self } from '$app/service-worker'
+import { version } from '$app/env'
+import { immutable, assets } from '$app/manifest'
+import { asset } from '$app/paths'
+import type { AssetPath } from '$app/types'
 
 // Create a unique cache name for this deployment
 const CACHE = `cache-${version}`
 
-const ASSETS = [...build, ...files]
+// manifest paths are relative, so turn them into absolute pathnames. `immutable` paths are
+// typed as plain strings, but are served from the same prefix as `static` files.
+const ASSETS = [
+  ...immutable.map((file) => asset(file.path as AssetPath)),
+  ...assets.map((file) => asset(file.path)),
+]
 
-sw.addEventListener('install', (event) => {
+self.addEventListener('install', (event) => {
   // Create a new cache and add all files to it
   async function addFilesToCache() {
     const cache = await caches.open(CACHE)
@@ -22,7 +24,7 @@ sw.addEventListener('install', (event) => {
   event.waitUntil(addFilesToCache())
 })
 
-sw.addEventListener('activate', (event) => {
+self.addEventListener('activate', (event) => {
   // Remove previous cached data from disk
   async function deleteOldCaches() {
     for (const key of await caches.keys()) {
@@ -33,7 +35,7 @@ sw.addEventListener('activate', (event) => {
   event.waitUntil(deleteOldCaches())
 })
 
-sw.addEventListener('fetch', (event) => {
+self.addEventListener('fetch', (event) => {
   // ignore POST requests etc
   if (event.request.method !== 'GET') return
 
@@ -41,7 +43,7 @@ sw.addEventListener('fetch', (event) => {
     const url = new URL(event.request.url)
     const cache = await caches.open(CACHE)
 
-    // `build`/`files` can always be served from the cache
+    // `immutable`/`assets` can always be served from the cache
     if (ASSETS.includes(url.pathname)) {
       const response = await cache.match(url.pathname)
 

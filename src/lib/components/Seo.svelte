@@ -1,11 +1,11 @@
 <script lang="ts">
   interface Props {
-    title: string;
-    description?: string | undefined;
-    keywords?: string | undefined;
-    canonical?: string | undefined;
-    type?: 'website' | 'article' | 'site' | 'book' | 'profile';
-    image?: string;
+    title: string
+    description?: string | undefined
+    keywords?: string | undefined
+    canonical?: string | undefined
+    type?: 'website' | 'article' | 'site' | 'book' | 'profile'
+    image?: string
   }
 
   let {
@@ -14,8 +14,8 @@
     keywords = undefined,
     canonical = undefined,
     type = 'site',
-    image = '/social_preview.webp'
-  }: Props = $props();
+    image = '/social_preview.webp',
+  }: Props = $props()
 </script>
 
 <svelte:head>

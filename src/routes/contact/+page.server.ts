@@ -1,9 +1,6 @@
 import { error, redirect, type Actions } from '@sveltejs/kit'
-import { env } from '$env/dynamic/private'
-import { sendMessage, sendLogMessage } from '$lib/server/discord'
-
-const RATE_LIMIT_CAPACITY = parseFloat(env.FORM_RATE_LIMIT_CAPACITY || '5')
-const RATE_LIMIT_DURATION = parseFloat(env.FORM_RATE_LIMIT_DURATION || '60')
+import { FORM_RATE_LIMIT_CAPACITY, FORM_RATE_LIMIT_DURATION } from '$app/env/private'
+import { sendMessage, sendLogMessage } from '#lib/server/discord.js'
 
 const visitsByIp = new Map<string, number>()
 
@@ -33,7 +30,7 @@ export const actions = {
 
     visitsByIp.set(ipAddress, (visitsByIp.get(ipAddress) || 0) + 1)
 
-    if ((visitsByIp.get(ipAddress) || 0) > RATE_LIMIT_CAPACITY) {
+    if ((visitsByIp.get(ipAddress) || 0) > FORM_RATE_LIMIT_CAPACITY) {
       // silently ignore the request and log it
       console.info('Rate limited', {
         ipAddress,
@@ -53,7 +50,7 @@ export const actions = {
     }
 
     setTimeout(() => {
-      if (visitsByIp.get(ipAddress) === RATE_LIMIT_CAPACITY) {
+      if (visitsByIp.get(ipAddress) === FORM_RATE_LIMIT_CAPACITY) {
         console.info('Rate limit reset', { ipAddress })
         sendLogMessage({
           username: 'abmarsch.ch Rate Limit Reset',
@@ -65,7 +62,7 @@ export const actions = {
 
       if (visitsByIp.get(ipAddress) === 1) visitsByIp.delete(ipAddress)
       else visitsByIp.set(ipAddress, (visitsByIp.get(ipAddress) || 0) - 1)
-    }, RATE_LIMIT_DURATION * 1000)
+    }, FORM_RATE_LIMIT_DURATION * 1000)
 
     redirect(301, '/thx')
   },
